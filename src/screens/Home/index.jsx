@@ -11,16 +11,17 @@ export default function Home() {
             <TextInput
                 style={styles.input}
                 placeholder="CPF"
-                placeholderTextColor="#696969"
+                placeholderTextColor="#fff"
                 keyboardType="numeric"
             />
+
             <TextInput
                 style={styles.input}
                 placeholder="Senha"
-                placeholderTextColor="#696969"
+                placeholderTextColor="#fff"
             />
 
-            <TouchableOpacity style={styles.buttonLogar}>
+            <TouchableOpacity style={styles.buttonEntrar}>
                 <Text style={styles.textButton}>
                     Entrar
                 </Text>
