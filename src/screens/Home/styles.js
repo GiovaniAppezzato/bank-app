@@ -23,26 +23,24 @@ export const styles = StyleSheet.create({
         fontSize: 15,
     },
     textButton: {
-        color: '#fff',
+        color: '#000',
         fontSize: 20
     },
     buttonEntrar: {
-        marginTop: 50,
-        width: 150,
-        height: 35,
-        borderRadius: 20,
-        borderWidth: 2,
-        borderColor: "#fff",
+        marginTop: 100,
+        width: 200,
+        height: 40,
+        borderRadius: 5,
+        backgroundColor:"#fff",
         alignItems: 'center',
         justifyContent: 'center'
     },
     buttonCadastrar: {
         marginTop: 25,
-        width:150,
-        height: 35,
-        borderRadius: 20,
-        borderWidth: 2,
-        borderColor: "#fff",
+        width:200,
+        height: 40,
+        borderRadius: 5,
+        backgroundColor:"#fff",
         alignItems: 'center',
         justifyContent: 'center'
     },

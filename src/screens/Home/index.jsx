@@ -1,7 +1,10 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, Image, TextInput, TouchableOpacity, Button } from "react-native";
 import { styles } from '../Home/styles';
 
-export default function Home() {
+export default function Home({ navigation }) {
+    function openTelaCadastro() {
+        navigation.navigate('TelaCadastro');
+    }
     return (
         <View style={styles.container}>
             <Image style={styles.logo}
@@ -19,18 +22,23 @@ export default function Home() {
                 style={styles.input}
                 placeholder="Senha"
                 placeholderTextColor="#fff"
+                secureTextEntry={true}
             />
 
-            <TouchableOpacity style={styles.buttonEntrar}>
+            <TouchableOpacity
+                style={styles.buttonEntrar}>
                 <Text style={styles.textButton}>
                     Entrar
                 </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonCadastrar}>
+            <TouchableOpacity
+                onPress={openTelaCadastro}
+                style={styles.buttonCadastrar}>
                 <Text style={styles.textButton}>
                     Cadastrar
                 </Text>
+
             </TouchableOpacity>
 
         </View>
