@@ -2,8 +2,8 @@ import { View, Text, Image, TextInput, TouchableOpacity, Button } from "react-na
 import { styles } from '../Home/styles';
 
 export default function Home({ navigation }) {
-    function openTelaCadastro() {
-        navigation.navigate('TelaCadastro');
+    function openRegistrationScreen() {
+        navigation.navigate('RegistrationScreen');
     }
     return (
         <View style={styles.container}>
@@ -33,7 +33,7 @@ export default function Home({ navigation }) {
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={openTelaCadastro}
+                onPress={openRegistrationScreen}
                 style={styles.buttonCadastrar}>
                 <Text style={styles.textButton}>
                     Cadastrar
