@@ -21,5 +21,14 @@ export const styles = StyleSheet.create({
         marginTop: 25,
         fontSize: 15,
     },
-    
+    buttonEntrar: {
+        marginRight:300,
+        width:40,
+        height: 40,
+        borderRadius: 50,
+        backgroundColor: '#rgba(0,0,0,0.4)',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+
 })

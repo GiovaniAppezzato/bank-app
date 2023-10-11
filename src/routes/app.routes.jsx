@@ -1,4 +1,4 @@
-import TelaCadastro from '../screens/TelaCadastro';
+import RegistrationScreen from '../screens/RegistrationScreen';
 import Home from '../screens/Home'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -7,15 +7,15 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 export function AppRoutes() {
     return (
-        <Navigator>
+        <Navigator screenOptions={{headerShown: false}}>
             <Screen
                 name='Home'
                 component={Home}
             />
 
             <Screen
-                name='TelaCadastro'
-                component={TelaCadastro}
+                name='RegistrationScreen'
+                component={RegistrationScreen}
             />
         </Navigator>
     )

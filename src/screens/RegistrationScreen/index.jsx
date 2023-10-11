@@ -1,9 +1,19 @@
 import { View, Text, Image, TextInput, TouchableOpacity, Button } from "react-native";
-import { styles } from "../TelaCadastro/styles";
+import { styles } from "./styles";
+import { CaretLeft } from 'phosphor-react-native';
 
-export default function TelaCadastro() {
+export default function RegistrationScreen({navigation}) {
+    function openHome() {
+        navigation.navigate('Home');
+    }
     return (
         <View style={styles.container}>
+
+            <TouchableOpacity
+                onPress={openHome}
+                style={styles.buttonEntrar}>
+                <CaretLeft color="#fff" size={30} />
+            </TouchableOpacity>
 
             <Image style={styles.logo}
                 source={require('../../../assets/icons/Logo.png')}
