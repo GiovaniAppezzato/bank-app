@@ -1,7 +1,7 @@
 const { StyleSheet } = require("react-native");
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#191970',
+        backgroundColor: '#e87d2a',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -13,35 +13,39 @@ export const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     input: {
-        height: 50,
+        height: 52,
         width: 300,
-        backgroundColor: '#rgba(0,0,0,0.4)',
-        borderRadius: 30,
-        color: '#fff',
-        padding: 15,
+        borderRadius: 12,
+        color: '#FFF',
+        padding: 13,
         marginTop: 25,
         fontSize: 15,
+        borderWidth: 1,
+        borderColor: '#cb6415',
+        backgroundColor:"#de6d17",
+        fontFamily: 'Poppins Regular'
     },
     textButton: {
-        color: '#000',
-        fontSize: 20
+        color: '#5c2e0a',
+        fontSize: 18,
+        fontFamily:'Poppins Medium'
     },
     buttonEntrar: {
         marginTop: 100,
-        width: 200,
-        height: 40,
-        borderRadius: 5,
+        width: 300,
+        height: 50,
+        borderRadius: 30,
         backgroundColor:"#fff",
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     buttonCadastrar: {
         marginTop: 25,
-        width:200,
-        height: 40,
-        borderRadius: 5,
+        width:300,
+        height: 50,
+        borderRadius: 30,
         backgroundColor:"#fff",
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
 })

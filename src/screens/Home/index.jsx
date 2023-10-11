@@ -14,14 +14,14 @@ export default function Home({ navigation }) {
             <TextInput
                 style={styles.input}
                 placeholder="CPF"
-                placeholderTextColor="#fff"
+                placeholderTextColor="#5c2e0a"
                 keyboardType="numeric"
             />
 
             <TextInput
                 style={styles.input}
                 placeholder="Senha"
-                placeholderTextColor="#fff"
+                placeholderTextColor="#5c2e0a"
                 secureTextEntry={true}
             />
 

@@ -2,7 +2,7 @@ import { View, Text, Image, TextInput, TouchableOpacity, Button } from "react-na
 import { styles } from "./styles";
 import { CaretLeft } from 'phosphor-react-native';
 
-export default function RegistrationScreen({navigation}) {
+export default function RegistrationScreen({ navigation }) {
     function openHome() {
         navigation.navigate('Home');
     }
@@ -11,7 +11,7 @@ export default function RegistrationScreen({navigation}) {
 
             <TouchableOpacity
                 onPress={openHome}
-                style={styles.buttonEntrar}>
+                style={styles.backButton}>
                 <CaretLeft color="#fff" size={30} />
             </TouchableOpacity>
 
@@ -22,22 +22,29 @@ export default function RegistrationScreen({navigation}) {
             <TextInput
                 style={styles.input}
                 placeholder="Nome"
-                placeholderTextColor="#fff"
+                placeholderTextColor="#5c2e0a"
             />
 
             <TextInput
                 style={styles.input}
                 placeholder="CPF"
-                placeholderTextColor="#fff"
+                placeholderTextColor="#5c2e0a"
                 keyboardType="numeric"
             />
 
             <TextInput
                 style={styles.input}
-                placeholder="Email"
-                placeholderTextColor="#fff"
+                placeholder="E-mail"
+                placeholderTextColor="#5c2e0a"
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Data de Nascimento"
+                placeholderTextColor="#5c2e0a"
                 keyboardType="numeric"
             />
+
         </View>
     )
 }
