@@ -9,16 +9,16 @@ export const styles = StyleSheet.create({
     logo: {
         width: 181,
         height: 198,
-        marginBottom: 100,
+        marginBottom: 50,
         resizeMode: 'contain',
     },
     input: {
-        height: 52,
+        height: 55,
         width: 300,
         borderRadius: 12,
         color: '#FFF',
         padding: 13,
-        marginTop: 25,
+        marginTop: 20,
         fontSize: 15,
         borderWidth: 1,
         borderColor: '#cb6415',
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
         fontFamily:'Poppins Medium'
     },
     buttonEntrar: {
-        marginTop: 100,
+        marginTop: 50,
         width: 300,
         height: 50,
         borderRadius: 30,
