@@ -21,29 +21,29 @@ export const styles = StyleSheet.create({
         padding: 13,
         marginTop: 20,
         fontSize: 15,
-        backgroundColor:"#FFF",
+        backgroundColor: "#FFF",
         fontFamily: 'Poppins SemiBold'
     },
     textButton: {
         color: '#FFF',
         fontSize: 18,
-        fontFamily:'Poppins SemiBold'
+        fontFamily: 'Poppins SemiBold'
     },
     buttonEntrar: {
         marginTop: 100,
         width: 300,
         height: 50,
         borderRadius: 5,
-        backgroundColor:"#051923",
+        backgroundColor: "#051923",
         alignItems: 'center',
         justifyContent: 'center',
     },
     buttonCadastrar: {
         marginTop: 10,
-        width:300,
+        width: 300,
         height: 50,
         borderRadius: 5,
-        backgroundColor:"#051923",
+        backgroundColor: "#051923",
         alignItems: 'center',
         justifyContent: 'center',
     },

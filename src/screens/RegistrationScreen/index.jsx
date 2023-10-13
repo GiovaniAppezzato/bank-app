@@ -83,22 +83,22 @@ export default function RegistrationScreen({ navigation }) {
                 </Text>
 
                 <TouchableOpacity style={styles.buttonDate} onPress={() => setShow(true)}>
-                <CalendarBlank color="#fff" size={30} />
-            </TouchableOpacity>
+                    <CalendarBlank color="#fff" size={30} />
+                </TouchableOpacity>
 
-            {
-                show && (
-                    <DateTimePicker
-                        mode="date"
-                        isVisible={show}
-                        onConfirm={handleConfirm}
-                        onCancel={handleCancel}
-  
-            
-                    />
-                )
-            }
-        </View>
+                {
+                    show && (
+                        <DateTimePicker
+                            mode="date"
+                            isVisible={show}
+                            onConfirm={handleConfirm}
+                            onCancel={handleCancel}
+
+
+                        />
+                    )
+                }
+            </View>
         </View >
     )
 }
