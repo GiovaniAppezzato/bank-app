@@ -31,8 +31,8 @@ export const styles = StyleSheet.create({
     },
     buttonDate: {
         marginLeft: 10,
-        width: 150,
-        height: 53,
+        width: 100,
+        height: 50,
         borderRadius: 10,
         backgroundColor: "#051923",
         alignItems: 'center',
@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
     },
     textDate: {
         height: 50,
-        width: 140,
+        width: 190,
         borderRadius: 10,
         color: '#0582ca',
         fontSize: 17,

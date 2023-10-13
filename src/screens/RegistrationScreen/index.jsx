@@ -4,6 +4,7 @@ import { styles } from "./styles";
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { CaretLeft, CalendarBlank } from 'phosphor-react-native';
 import { useState } from 'react';
+import CustomDropdown from "./CustomDropdown";
 
 export default function RegistrationScreen({ navigation }) {
     function openHome() {
@@ -93,12 +94,11 @@ export default function RegistrationScreen({ navigation }) {
                             isVisible={show}
                             onConfirm={handleConfirm}
                             onCancel={handleCancel}
-
-
                         />
                     )
                 }
             </View>
+            <CustomDropdown />
         </View >
     )
 }

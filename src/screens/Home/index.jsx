@@ -1,5 +1,6 @@
 import { View, Text, Image, TextInput, TouchableOpacity, Button } from "react-native";
 import { styles } from '../Home/styles';
+import { User } from 'phosphor-react-native';
 
 export default function Home({ navigation }) {
     function openRegistrationScreen() {
@@ -10,14 +11,12 @@ export default function Home({ navigation }) {
             <Image style={styles.logo}
                 source={require('../../../assets/icons/Logo.png')}
             />
-
             <TextInput
                 style={styles.input}
                 placeholder="CPF"
                 placeholderTextColor="#0582ca"
                 keyboardType="numeric"
             />
-
             <TextInput
                 style={styles.input}
                 placeholder="Senha"
@@ -36,7 +35,7 @@ export default function Home({ navigation }) {
                 onPress={openRegistrationScreen}
                 style={styles.buttonCadastrar}>
                 <Text style={styles.textButton}>
-                    Cadastrar
+                    Abrir Conta
                 </Text>
 
             </TouchableOpacity>
