@@ -59,20 +59,20 @@ export default function RegistrationScreen({ navigation }) {
             <TextInput
                 style={styles.input}
                 placeholder="Nome"
-                placeholderTextColor="#5c2e0a"
+                placeholderTextColor="#0582ca"
             />
 
             <TextInput
                 style={styles.input}
                 placeholder="CPF"
-                placeholderTextColor="#5c2e0a"
+                placeholderTextColor="#0582ca"
                 keyboardType="numeric"
             />
 
             <TextInput
                 style={styles.input}
                 placeholder="E-mail"
-                placeholderTextColor="#5c2e0a"
+                placeholderTextColor="#0582ca"
             />
 
             <View style={styles.dateContainer}>
@@ -83,7 +83,7 @@ export default function RegistrationScreen({ navigation }) {
                 </Text>
 
                 <TouchableOpacity style={styles.buttonDate} onPress={() => setShow(true)}>
-                <CalendarBlank color="#000" size={30} />
+                <CalendarBlank color="#fff" size={30} />
             </TouchableOpacity>
 
             {
