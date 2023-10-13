@@ -93,7 +93,8 @@ export default function RegistrationScreen({ navigation }) {
                         isVisible={show}
                         onConfirm={handleConfirm}
                         onCancel={handleCancel}
-                        
+  
+            
                     />
                 )
             }

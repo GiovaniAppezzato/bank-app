@@ -1,7 +1,7 @@
 const { StyleSheet } = require("react-native");
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#e87d2a',
+        backgroundColor: '#003554',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     logo: {
         width: 181,
         height: 198,
+        marginTop: 50,
         marginBottom: 50,
         resizeMode: 'contain',
     },
@@ -20,31 +21,29 @@ export const styles = StyleSheet.create({
         padding: 13,
         marginTop: 20,
         fontSize: 15,
-        borderWidth: 1,
-        borderColor: '#cb6415',
-        backgroundColor:"#de6d17",
-        fontFamily: 'Poppins Regular'
+        backgroundColor:"#FFF",
+        fontFamily: 'Poppins SemiBold'
     },
     textButton: {
-        color: '#5c2e0a',
+        color: '#FFF',
         fontSize: 18,
-        fontFamily:'Poppins Medium'
+        fontFamily:'Poppins SemiBold'
     },
     buttonEntrar: {
-        marginTop: 50,
+        marginTop: 100,
         width: 300,
         height: 50,
-        borderRadius: 30,
-        backgroundColor:"#fff",
+        borderRadius: 5,
+        backgroundColor:"#051923",
         alignItems: 'center',
         justifyContent: 'center',
     },
     buttonCadastrar: {
-        marginTop: 25,
+        marginTop: 10,
         width:300,
         height: 50,
-        borderRadius: 30,
-        backgroundColor:"#fff",
+        borderRadius: 5,
+        backgroundColor:"#051923",
         alignItems: 'center',
         justifyContent: 'center',
     },
