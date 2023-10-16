@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     input: {
+        marginBottom: 10,
         height: 55,
         width: 300,
         borderRadius: 12,
@@ -22,24 +23,15 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         fontSize: 15,
         backgroundColor: "#FFF",
-        fontFamily: 'Poppins SemiBold'
+        fontFamily: 'Poppins SemiBold',
     },
     textButton: {
         color: '#FFF',
         fontSize: 18,
         fontFamily: 'Poppins SemiBold'
     },
-    buttonEntrar: {
-        marginTop: 100,
-        width: 300,
-        height: 50,
-        borderRadius: 5,
-        backgroundColor: "#051923",
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    buttonCadastrar: {
-        marginTop: 10,
+    button: {
+        marginTop: 20,
         width: 300,
         height: 50,
         borderRadius: 5,

@@ -8,9 +8,11 @@ export default function Home({ navigation }) {
     }
     return (
         <View style={styles.container}>
+
             <Image style={styles.logo}
                 source={require('../../../assets/icons/Logo.png')}
             />
+
             <TextInput
                 style={styles.input}
                 placeholder="CPF"
@@ -25,7 +27,7 @@ export default function Home({ navigation }) {
             />
 
             <TouchableOpacity
-                style={styles.buttonEntrar}>
+                style={styles.button}>
                 <Text style={styles.textButton}>
                     Entrar
                 </Text>
@@ -33,11 +35,10 @@ export default function Home({ navigation }) {
 
             <TouchableOpacity
                 onPress={openRegistrationScreen}
-                style={styles.buttonCadastrar}>
+                style={styles.button}>
                 <Text style={styles.textButton}>
                     Abrir Conta
                 </Text>
-
             </TouchableOpacity>
 
         </View>

@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    dateContainer: {
+    containerDate: {
         marginTop: 25,
         flexDirection: 'row',
         alignItems: 'center',
@@ -55,5 +55,8 @@ export const styles = StyleSheet.create({
         fontFamily: 'Poppins SemiBold',
         textAlign: 'center',
         textAlignVertical: 'center',
+    },
+    arrowDown:{
+
     },
 })

@@ -4,7 +4,7 @@ import {Routes} from "./src/routes";
 function App() {
   return (
     <>
-      <StatusBar  barStyle={"dark-content"}
+      <StatusBar  barStyle={"light-content"}
       backgroundColor= "transparent"
       translucent
       />
