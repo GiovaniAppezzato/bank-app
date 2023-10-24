@@ -16,13 +16,13 @@ export default function Home({ navigation }) {
             <TextInput
                 style={styles.input}
                 placeholder="CPF"
-                placeholderTextColor="#0582ca"
+                placeholderTextColor="#051923"
                 keyboardType="numeric"
             />
             <TextInput
                 style={styles.input}
                 placeholder="Senha"
-                placeholderTextColor="#0582ca"
+                placeholderTextColor="#051923"
                 secureTextEntry={true}
             />
 

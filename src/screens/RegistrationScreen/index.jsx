@@ -26,25 +26,44 @@ export default function RegistrationScreen({ navigation }) {
             <TextInput
                 style={styles.input}
                 placeholder="Nome"
-                placeholderTextColor="#0582ca"
+                placeholderTextColor="#051923"
             />
 
             <TextInput
                 style={styles.input}
                 placeholder="CPF"
-                placeholderTextColor="#0582ca"
+                placeholderTextColor="#051923"
                 keyboardType="numeric"
             />
 
             <TextInput
                 style={styles.input}
                 placeholder="E-mail"
-                placeholderTextColor="#0582ca"
+                placeholderTextColor="#051923"
             />
 
             <CustomDropdown />
 
-            <BirthCalendar/>
+            <BirthCalendar />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Senha"
+                placeholderTextColor="#051923"
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder=" Confirmar Senha"
+                placeholderTextColor="#051923"
+            />
+
+            <TouchableOpacity
+                style={styles.button}>
+                <Text style={styles.textButton}>
+                    Concluir
+                </Text>
+            </TouchableOpacity>
 
         </View >
     )

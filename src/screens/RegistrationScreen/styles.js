@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
         width: 300,
         borderRadius: 10,
         padding: 13,
-        color: "#003554",
+        color: "#000",
         marginTop: 25,
         fontSize: 15,
         backgroundColor: "#FFF",
@@ -49,14 +49,25 @@ export const styles = StyleSheet.create({
         height: 50,
         width: 190,
         borderRadius: 10,
-        color: '#0582ca',
+        color: '#051923',
         fontSize: 17,
         backgroundColor: "#FFF",
         fontFamily: 'Poppins SemiBold',
         textAlign: 'center',
         textAlignVertical: 'center',
     },
-    arrowDown:{
-
+    button: {
+        marginTop: 20,
+        width: 300,
+        height: 50,
+        borderRadius: 5,
+        backgroundColor: "#051923",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textButton: {
+        color: '#FFF',
+        fontSize: 18,
+        fontFamily: 'Poppins SemiBold'
     },
 })
