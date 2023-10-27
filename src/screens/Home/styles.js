@@ -39,4 +39,10 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    containerBackground: {
+        backgroundColor: '#003554',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 })
