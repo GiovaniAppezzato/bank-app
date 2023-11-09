@@ -1,11 +1,13 @@
 import { View, Text, Image, TextInput, TouchableOpacity, Button, ImageBackground } from "react-native";
-import { styles } from '../Home/styles';
+import { styles } from './styles';
 import { User } from 'phosphor-react-native';
 import Wave from '../../../assets/icons/wave.svg';
+
 export default function Home({ navigation }) {
     function openRegistrationScreen() {
         navigation.navigate('RegistrationScreen');
     }
+
     return (
 
 
