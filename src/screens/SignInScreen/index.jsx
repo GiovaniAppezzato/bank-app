@@ -10,9 +10,9 @@ import {
 } from "react-native";
 
 import styles from './styles';
-import Wave from '../../../assets/icons/wave.svg';
-
-import Rectangle from '../../../assets/icons/Rectangle 1.svg';
+import Rectangle2 from '../../../assets/icons/Rectangle 2.svg';
+import Rectangle1 from '../../../assets/icons/Rectangle 1.svg';
+import Rectangle153 from '../../../assets/icons/Rectangle 153.svg';
 
 const HomeScreen = ({ navigation }) => {
 
@@ -22,11 +22,14 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Wave style={{ position: 'absolute', top: 0}} />
-      <Rectangle style={{ position: 'absolute', top: 0}} />
+
+      <Rectangle153 style={{ position: 'absolute', top: 0}} />
       <Image style={styles.logo}
         source={require('../../../assets/icons/Logo.png')}
       />
+
+      
+      <View style={styles.containerView}>
 
       <TextInput
         style={styles.input}
@@ -53,6 +56,9 @@ const HomeScreen = ({ navigation }) => {
           Abrir Conta
         </Text>
       </TouchableOpacity>
+
+      </View>
+
     </View>
   )
 }

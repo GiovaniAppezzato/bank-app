@@ -10,20 +10,20 @@ const styles = StyleSheet.create({
   logo: {
     width: 181,
     height: 198,
-    marginTop: 30,
-    marginBottom: 50,
     resizeMode: 'contain',
+    position:'absolute',
+    top:80
   },
   input: {
     marginBottom: 10,
-    height: 55,
-    width: 300,
+    height: 56,
+    width: 327,
     borderRadius: 12,
-    color: '#051923',
+    color: '#000',
     padding: 13,
     marginTop: 20,
     fontSize: 15,
-    backgroundColor: "#FFF",
+    backgroundColor: "#EDEDED",
     fontFamily: 'Poppins SemiBold',
   },
   textButton: {
@@ -33,19 +33,17 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    width: 300,
-    height: 50,
-    borderRadius: 5,
-    backgroundColor: "#051923",
+    width: 327,
+    height: 52,
+    borderRadius: 30,
+    backgroundColor: "#2382F7",
     alignItems: 'center',
     justifyContent: 'center',
   },
-  containerBackground: {
-    backgroundColor: '#003554',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  containerView:{
+    marginTop:350
+  }
+  
 })
 
 export default styles;
