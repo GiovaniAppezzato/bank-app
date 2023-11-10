@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#003554',
+    backgroundColor: '#FFFF',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 181,
     height: 198,
-    marginTop: 50,
+    marginTop: 30,
     marginBottom: 50,
     resizeMode: 'contain',
   },

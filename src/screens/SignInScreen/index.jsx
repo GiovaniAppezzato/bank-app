@@ -12,6 +12,8 @@ import {
 import styles from './styles';
 import Wave from '../../../assets/icons/wave.svg';
 
+import Rectangle from '../../../assets/icons/Rectangle 1.svg';
+
 const HomeScreen = ({ navigation }) => {
 
   function handleGoToSignUp() {
@@ -20,8 +22,8 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Wave style={{ position: 'absolute', top: 0, opacity: 0.7}} />
-
+      <Wave style={{ position: 'absolute', top: 0}} />
+      <Rectangle style={{ position: 'absolute', top: 0}} />
       <Image style={styles.logo}
         source={require('../../../assets/icons/Logo.png')}
       />
