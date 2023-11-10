@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 10,
-    height: 56,
+    height: 60,
     width: 327,
     borderRadius: 12,
     color: '#000',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     width: 327,
-    height: 52,
+    height: 60,
     borderRadius: 30,
     backgroundColor: "#2382F7",
     alignItems: 'center',
