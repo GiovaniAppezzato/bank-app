@@ -2,12 +2,8 @@ import React from "react";
 import { 
   Text, 
   ActivityIndicator,
-  TextStyle,
 } from "react-native";
-import { 
-  RectButton, 
-  RectButtonProps 
-} from 'react-native-gesture-handler';
+import { RectButton } from 'react-native-gesture-handler';
 
 import styles from './styles';
 import theme from "../../global/styles/theme";

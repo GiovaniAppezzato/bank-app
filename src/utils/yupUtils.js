@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-import { FormikProps } from "formik";
 
 export const setValidationErrors = (
   formRef,
