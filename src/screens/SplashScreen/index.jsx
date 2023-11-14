@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-import Wave from '../../../assets/icons/wave.svg';
+
 
 const SplashScreen = ({ navigation }) => {
   const [isLoadingApp, setIsLoadingApp] = useState(true);
