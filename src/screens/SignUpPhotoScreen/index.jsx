@@ -9,8 +9,8 @@ import styles from './styles';
 import theme from '../../global/styles/theme';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
-// import ImagePickerModal from '../../components/ImagePickerModal';
-// import { requestCameraPermission } from '../../utils/permissionsUtils';
+import ImagePickerModal from '../../components/ImagePickerModal';
+import { requestCameraPermission } from '../../utils/permissionsUtils';
 
 const SignUpScreenPhoto = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,11 +24,13 @@ const SignUpScreenPhoto = ({ navigation }) => {
   }
 
   function handlePickImage() {
-    requestCameraPermission().then(response => {
+    setIsVisiblePhotoModal(true);
+
+    /* requestCameraPermission().then(response => {
       if(response) {
         setIsVisiblePhotoModal(true);
       }
-    });
+    }); */
   }
   
   function onImageSelected(response) {
@@ -139,13 +141,13 @@ const SignUpScreenPhoto = ({ navigation }) => {
                   </View>
                 )}
 
-                {/* <ImagePickerModal
+                <ImagePickerModal
                   isVisible={isVisiblePhotoModal}
-                  hasRemoveOption={values.picture.uri !== ""}
+                  hasRemoveOption={values.photo.uri !== ""}
                   onClose={() => setIsVisiblePhotoModal(false)}
                   onImageSelected={onImageSelected}
                   onRemoveImage={onRemoveImage}
-                /> */}
+                />
               </>
             )}
           </Formik>

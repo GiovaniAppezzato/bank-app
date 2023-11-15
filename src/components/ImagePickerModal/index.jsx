@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { Modalize } from 'react-native-modalize';
-import { Portal } from 'react-native-portalize';
 import { RectButton } from "react-native-gesture-handler";
 import { 
   launchCamera, 
@@ -25,9 +24,7 @@ const ImagePickerModal = ({
   onImageSelected,
   onRemoveImage
 }) => {
-  const ref = useRef<Modalize>(null);
-
-  const { t } = useTranslation();
+  const ref = useRef(null);
 
   useEffect(() => {
     if(isVisible) {
@@ -80,90 +77,88 @@ const ImagePickerModal = ({
   }
 
   return (
-    <Portal>
-      <Modalize 
-        ref={ref}
-        adjustToContentHeight={true}
-        scrollViewProps={{ showsVerticalScrollIndicator: false }}
-        overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
-        panGestureEnabled={true}
-        onClose={() => {
-          onClose();
-        }}
-      >
-        <View style={styles.container}>
-          <Text style={styles.title}>
-            {t('components.imagePickerModal.title')}
+    <Modalize 
+      ref={ref}
+      adjustToContentHeight={true}
+      scrollViewProps={{ showsVerticalScrollIndicator: false }}
+      overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+      panGestureEnabled={true}
+      onClose={() => {
+        onClose();
+      }}
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>
+          Selecione alguma opção:
+        </Text>
+
+        <RectButton 
+          style={styles.button}
+          onPress={() => {
+            handleLaunchCamera();
+          }}
+        >
+          <View style={styles.icon}>
+            <FontAwesome 
+              size={24} 
+              name="camera" 
+              color={theme.colors.TEXT} 
+            />
+          </View>
+
+          <Text style={styles.text}>
+            Tirar foto agora
           </Text>
+        </RectButton>
 
+        <RectButton 
+          style={styles.button}
+          onPress={() => {
+            handleLaunchImageLibrary();
+          }}
+        >
+          <View style={styles.icon}>
+            <FontAwesome 
+              size={24} 
+              name="image" 
+              color={theme.colors.TEXT} 
+            />
+          </View>
+
+          <Text style={styles.text}>
+            Escolher da galeria
+          </Text>
+        </RectButton>
+
+        {hasRemoveOption && (
           <RectButton 
             style={styles.button}
             onPress={() => {
-              handleLaunchCamera();
+              ref.current?.close();
+
+              if(onRemoveImage) {
+                onRemoveImage();
+              }
             }}
           >
             <View style={styles.icon}>
               <FontAwesome 
                 size={24} 
-                name="camera" 
-                color={theme.colors.TEXT} 
+                name="trash" 
+                color={theme.colors.DANGER} 
               />
             </View>
 
-            <Text style={styles.text}>
-              {t('components.imagePickerModal.takePhoto')}
+            <Text style={[
+              styles.text,
+              { color: theme.colors.DANGER }
+            ]}>
+              Remover imagem atual
             </Text>
           </RectButton>
-
-          <RectButton 
-            style={styles.button}
-            onPress={() => {
-              handleLaunchImageLibrary();
-            }}
-          >
-            <View style={styles.icon}>
-              <FontAwesome 
-                size={24} 
-                name="image" 
-                color={theme.colors.TEXT} 
-              />
-            </View>
-
-            <Text style={styles.text}>
-              {t('components.imagePickerModal.chooseFromGallery')}
-            </Text>
-          </RectButton>
-
-          {hasRemoveOption && (
-            <RectButton 
-              style={styles.button}
-              onPress={() => {
-                ref.current?.close();
-
-                if(onRemoveImage) {
-                  onRemoveImage();
-                }
-              }}
-            >
-              <View style={styles.icon}>
-                <FontAwesome 
-                  size={24} 
-                  name="trash" 
-                  color={theme.colors.DANGER} 
-                />
-              </View>
-
-              <Text style={[
-                styles.text,
-                { color: theme.colors.DANGER }
-              ]}>
-                {t('components.imagePickerModal.remove')}
-              </Text>
-            </RectButton>
-          )}
-        </View>
-      </Modalize>
-    </Portal> 
+        )}
+      </View>
+    </Modalize>
   )
 }
 
