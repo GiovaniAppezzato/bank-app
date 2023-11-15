@@ -29,7 +29,7 @@ const HomeScreen = ({ navigation }) => {
     style={styles.container}>
 
       <View style={styles.containerHeader}> 
-        <Rectangle153 style={{  }} />
+        <Rectangle153/>
          <Image style={styles.logo}
           source={require('../../../assets/icons/Logo.png')}
         /> 
