@@ -4,12 +4,12 @@ import {
   Text, 
   Image, 
   TextInput, 
-  TouchableOpacity
+  TouchableOpacity,
+  SafeAreaView,
+  ScrollView
 } from "react-native";
 
 import styles from './styles';
-import Rectangle2 from '../../../assets/icons/Rectangle 2.svg';
-import Rectangle1 from '../../../assets/icons/Rectangle 1.svg';
 import Rectangle153 from '../../../assets/icons/Rectangle 153.svg';
 
 // TODO: Começar a usar os componentes. 
@@ -23,13 +23,18 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Rectangle153 style={{ position: 'absolute', top: 0 }} />
+    <ScrollView
+    contentContainerStyle={{ flexGrow: 1 }}
+    keyboardShouldPersistTaps="handled"
+    style={styles.container}>
 
-      <Image style={styles.logo}
-        source={require('../../../assets/icons/Logo.png')}
-      />
-
+      <View style={styles.containerHeader}> 
+        <Rectangle153 style={{  }} />
+         <Image style={styles.logo}
+          source={require('../../../assets/icons/Logo.png')}
+        /> 
+      </View>
+      
       <View style={styles.containerView}>
         <TextInput
           style={styles.input}
@@ -56,8 +61,9 @@ const HomeScreen = ({ navigation }) => {
             Abrir Conta
           </Text>
         </TouchableOpacity>
-      </View>
-    </View>
+
+      </View> 
+    </ScrollView>
   )
 }
 
