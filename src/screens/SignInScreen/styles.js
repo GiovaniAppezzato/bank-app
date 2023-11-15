@@ -4,20 +4,16 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFF',
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   logo: {
-    width: 181,
-    height: 198,
+    width: 180,
+    height: 180,
     resizeMode: 'contain',
-    position:'absolute',
-    top:80
+    marginTop:-320
   },
   input: {
     marginBottom: 10,
     height: 60,
-    width: 327,
     borderRadius: 12,
     color: '#000',
     padding: 13,
@@ -33,7 +29,6 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    width: 327,
     height: 55,
     borderRadius: 30,
     backgroundColor: "#2382F7",
@@ -41,8 +36,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   containerView:{
-    marginTop:350
+    flex:1,
+    width:'100%',
+    padding:25
+  }, 
+  containerHeader:{
+    position:'relative',
+    alignItems:'center',
+    marginBottom:150
   }
+
   
 })
 
