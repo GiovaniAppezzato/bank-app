@@ -25,7 +25,7 @@ const signUpSchema = Yup.object().shape({
     .required('A senha é obrigatória'),
 });
 
-const HomeScreen = ({navigation}) => {
+const SignInScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const formRef = useRef(null);
@@ -127,4 +127,4 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-export default HomeScreen;
+export default SignInScreen;
