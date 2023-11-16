@@ -18,8 +18,8 @@ import InputMask from '../../components/Formik/InputMask';
 
 const signUpSchema = Yup.object().shape({
   cpf: Yup.string()
-    .email('Digite um e-mail válido')
-    .required('O e-mail é obrigatório'),
+    .min(8,'O CPF deve ter no mínimo 11 caracteres')
+    .required('O cpf é obrigatório'),
   password: Yup.string()
     .min(6, 'A senha deve ter no mínimo 6 caracteres')
     .required('A senha é obrigatória'),
