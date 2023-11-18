@@ -7,6 +7,7 @@ import {
   View 
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { Portal } from 'react-native-portalize';
 import { Modalize } from 'react-native-modalize';
 import { RectButton } from "react-native-gesture-handler";
 import { 
@@ -77,88 +78,90 @@ const ImagePickerModal = ({
   }
 
   return (
-    <Modalize 
-      ref={ref}
-      adjustToContentHeight={true}
-      scrollViewProps={{ showsVerticalScrollIndicator: false }}
-      overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
-      panGestureEnabled={true}
-      onClose={() => {
-        onClose();
-      }}
-    >
-      <View style={styles.container}>
-        <Text style={styles.title}>
-          Selecione alguma opção:
-        </Text>
-
-        <RectButton 
-          style={styles.button}
-          onPress={() => {
-            handleLaunchCamera();
-          }}
-        >
-          <View style={styles.icon}>
-            <FontAwesome 
-              size={24} 
-              name="camera" 
-              color={theme.colors.TEXT} 
-            />
-          </View>
-
-          <Text style={styles.text}>
-            Tirar foto agora
+    <Portal>
+      <Modalize 
+        ref={ref}
+        adjustToContentHeight={true}
+        scrollViewProps={{ showsVerticalScrollIndicator: false }}
+        overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+        panGestureEnabled={true}
+        onClose={() => {
+          onClose();
+        }}
+      >
+        <View style={styles.container}>
+          <Text style={styles.title}>
+            Selecione alguma opção:
           </Text>
-        </RectButton>
 
-        <RectButton 
-          style={styles.button}
-          onPress={() => {
-            handleLaunchImageLibrary();
-          }}
-        >
-          <View style={styles.icon}>
-            <FontAwesome 
-              size={24} 
-              name="image" 
-              color={theme.colors.TEXT} 
-            />
-          </View>
-
-          <Text style={styles.text}>
-            Escolher da galeria
-          </Text>
-        </RectButton>
-
-        {hasRemoveOption && (
           <RectButton 
             style={styles.button}
             onPress={() => {
-              ref.current?.close();
-
-              if(onRemoveImage) {
-                onRemoveImage();
-              }
+              handleLaunchCamera();
             }}
           >
             <View style={styles.icon}>
               <FontAwesome 
                 size={24} 
-                name="trash" 
-                color={theme.colors.DANGER} 
+                name="camera" 
+                color={theme.colors.TEXT} 
               />
             </View>
 
-            <Text style={[
-              styles.text,
-              { color: theme.colors.DANGER }
-            ]}>
-              Remover imagem atual
+            <Text style={styles.text}>
+              Tirar foto agora
             </Text>
           </RectButton>
-        )}
-      </View>
-    </Modalize>
+
+          <RectButton 
+            style={styles.button}
+            onPress={() => {
+              handleLaunchImageLibrary();
+            }}
+          >
+            <View style={styles.icon}>
+              <FontAwesome 
+                size={24} 
+                name="image" 
+                color={theme.colors.TEXT} 
+              />
+            </View>
+
+            <Text style={styles.text}>
+              Escolher da galeria
+            </Text>
+          </RectButton>
+
+          {hasRemoveOption && (
+            <RectButton 
+              style={styles.button}
+              onPress={() => {
+                ref.current?.close();
+
+                if(onRemoveImage) {
+                  onRemoveImage();
+                }
+              }}
+            >
+              <View style={styles.icon}>
+                <FontAwesome 
+                  size={24} 
+                  name="trash" 
+                  color={theme.colors.DANGER} 
+                />
+              </View>
+
+              <Text style={[
+                styles.text,
+                { color: theme.colors.DANGER }
+              ]}>
+                Remover imagem atual
+              </Text>
+            </RectButton>
+          )}
+        </View>
+      </Modalize>
+    </Portal>
   )
 }
 

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { SafeAreaView, View, Text, ScrollView, StatusBar, ActivityIndicator } from 'react-native'
+import { SafeAreaView, View, Text, ScrollView, StatusBar, ActivityIndicator, Keyboard } from 'react-native'
 import { useRoute } from '@react-navigation/native';
 import { Masks } from "react-native-mask-input";
 import { Formik } from "formik";
@@ -13,23 +13,46 @@ import Input from '../../components/Formik/Input';
 import InputMask from '../../components/Formik/InputMask';
 import { setValidationErrors } from '../../utils/yupUtils';
 
+const schema = Yup.object().shape({
+  zip_code: Yup.string()
+    .required('O CEP é obrigatório'),
+  state: Yup.string()
+    .required('O estado é obrigatório'),
+  city: Yup.string()
+    .required('A cidade é obrigatória'),
+  neighborhood: Yup.string()
+    .required('O bairro é obrigatório'),
+  street: Yup.string()  
+    .required('A rua é obrigatória'),
+  number: Yup.string()
+    .required('O número é obrigatório'),
+});
+
 const SignUpScreenAddress = ({ navigation }) => {
-  const [isLoadingAddress, setIsLoadingAddress] = useState(true);
+  const [isLoadingAddress, setIsLoadingAddress] = useState(false);
 
   const route = useRoute();
 
   const formRef = useRef(null);
   const scrollRef = useRef(null);
 
-  useEffect(() => {
-    console.log(route);
-  }, []);
-
   function onSubmit(values) {
-    navigation.navigate('SignUpPhotoScreen', {
-      user: route.params?.user,
-      address: values,
-    });
+    try {
+      // schema.validateSync(values, { abortEarly: false });
+
+      Keyboard.dismiss();
+
+      navigation.navigate('SignUpPhotoScreen', {
+        user: route.params?.user,
+        address: values,
+      });
+    } catch (errors) {
+      if(errors instanceof Yup.ValidationError) {
+        setValidationErrors(formRef, errors);
+      }
+  
+      scrollRef.current?.scrollTo({ y: 0, animated: true }); 
+    }
   }
 
   function autoFillAddressByZipCode(text) {

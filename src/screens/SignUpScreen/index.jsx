@@ -13,7 +13,7 @@ import InputMask from '../../components/Formik/InputMask';
 import InputPassword from '../../components/Formik/InputPassword';
 import { setValidationErrors } from '../../utils/yupUtils';
 
-const signUpSchema = Yup.object().shape({
+const schema = Yup.object().shape({
   name: Yup.string()
     .required('O nome é obrigatório'),
   email: Yup.string()
@@ -39,7 +39,7 @@ const SignUpScreen = ({ navigation }) => {
     setIsLoading(true);
 
     try {
-      // signUpSchema.validateSync(values, { abortEarly: false });
+      // schema.validateSync(values, { abortEarly: false });
 
       Keyboard.dismiss();
 
@@ -88,7 +88,7 @@ const SignUpScreen = ({ navigation }) => {
               email: "",
               password: "",
               confirm_password: "",
-              sex: "",
+              sex: "M",
               birth: "",
             }}
           >

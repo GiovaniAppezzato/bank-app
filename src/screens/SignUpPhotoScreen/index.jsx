@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView, View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
+import { SafeAreaView, View, Text, ScrollView, StatusBar, TouchableOpacity, Image } from 'react-native'
+import { useRoute } from '@react-navigation/native';
 import { Formik } from "formik";
 import Feather from "react-native-vector-icons/Feather";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -11,6 +12,14 @@ import Header from '../../components/Header';
 import Button from '../../components/Button';
 import ImagePickerModal from '../../components/ImagePickerModal';
 import { requestCameraPermission } from '../../utils/permissionsUtils';
+import { useAuth } from '../../hooks/useAuth';
+
+const schema = Yup.object().shape({
+  photo: Yup.object().shape({
+    uri: Yup.string()
+      .required('A foto é obrigatória'),
+  }),
+});
 
 const SignUpScreenPhoto = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,25 +28,44 @@ const SignUpScreenPhoto = ({ navigation }) => {
   const formRef = useRef(null);
   const scrollRef = useRef(null);
 
-  function onSubmit(values) {
-    console.log(values);
+  const route = useRoute();
+  const { signUp } = useAuth();
+
+  async function onSubmit(values) {
+    setIsLoading(true);
+
+    try {
+      // schema.validateSync(values, { abortEarly: false });
+
+      await signUp({
+        user: route.params?.user,
+        address: route.params?.address,
+        ...values,
+      });
+    } catch (errors) {
+      if(errors instanceof Yup.ValidationError) {
+        setValidationErrors(formRef, errors);
+      }
+  
+      scrollRef.current?.scrollTo({ y: 0, animated: true }); 
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   function handlePickImage() {
-    setIsVisiblePhotoModal(true);
-
-    /* requestCameraPermission().then(response => {
+    requestCameraPermission().then(response => {
       if(response) {
         setIsVisiblePhotoModal(true);
       }
-    }); */
+    });
   }
   
   function onImageSelected(response) {
     if(response.assets) {
       const assets = response.assets[0];
 
-      formRef.current?.setFieldValue("picture", {
+      formRef.current?.setFieldValue("photo", {
         uri: assets.uri,
         type: assets.type,
         name: assets.fileName
@@ -46,7 +74,7 @@ const SignUpScreenPhoto = ({ navigation }) => {
   }
 
   function onRemoveImage() {
-    formRef.current?.setFieldValue("picture", {
+    formRef.current?.setFieldValue("photo", {
       uri: "",
       type: "",
       name: ""
@@ -140,6 +168,10 @@ const SignUpScreenPhoto = ({ navigation }) => {
                     </View>
                   </View>
                 )}
+                
+                {errors.photo?.uri && (
+                  <Text style={styles.textSm}>• {errors.photo.uri}</Text>
+                )}
 
                 <ImagePickerModal
                   isVisible={isVisiblePhotoModal}
@@ -147,6 +179,14 @@ const SignUpScreenPhoto = ({ navigation }) => {
                   onClose={() => setIsVisiblePhotoModal(false)}
                   onImageSelected={onImageSelected}
                   onRemoveImage={onRemoveImage}
+                />
+
+                <Button 
+                  title="Realizar cadastro"
+                  style={{ marginTop: 30 }}
+                  onPress={() => {
+                    handleSubmit();
+                  }}
                 />
               </>
             )}
