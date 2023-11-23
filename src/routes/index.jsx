@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-
 import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes';
+import { useAuth } from '../hooks/useAuth';
 
 export default function Routes() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   return (
     <NavigationContainer>

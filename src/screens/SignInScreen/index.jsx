@@ -1,25 +1,26 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   View,
+  Text,
   Image,
   ScrollView,
+  Keyboard
 } from 'react-native';
-import {Formik} from 'formik';
-import styles from './styles';
-import Rectangle153 from '../../../assets/icons/Rectangle 153.svg';
-import {Masks} from 'react-native-mask-input';
-import theme from '../../global/styles/theme';
 import * as Yup from 'yup';
-import {setValidationErrors} from '../../utils/yupUtils';
+import {Formik} from 'formik';
+
+import styles from './styles';
+import Rectangle153 from '../../../assets/icons/Rectangle 153.svg';;
 import Button from '../../components/Button';
 import Input from '../../components/Formik/Input';
 import InputPassword from '../../components/Formik/InputPassword';
-import InputMask from '../../components/Formik/InputMask';
+import {setValidationErrors} from '../../utils/yupUtils';
+import {useAuth} from '../../hooks/useAuth';
 
 const signUpSchema = Yup.object().shape({
-  cpf: Yup.string()
-    .min(8,'O CPF deve ter no mínimo 11 caracteres')
-    .required('O cpf é obrigatório'),
+  email: Yup.string()
+    .required('O e-mail é obrigatório')
+    .email('Digite um e-mail válido'),
   password: Yup.string()
     .min(6, 'A senha deve ter no mínimo 6 caracteres')
     .required('A senha é obrigatória'),
@@ -30,19 +31,22 @@ const SignInScreen = ({navigation}) => {
 
   const formRef = useRef(null);
   const scrollRef = useRef(null);
+
+  const { signIn } = useAuth();
+
   const handleSignUpScreen = () => {
     navigation.navigate('SignUpScreen');
   };
-  function onSubmit(values) {
+
+  async function onSubmit(values) {
     setIsLoading(true);
 
     try {
       signUpSchema.validateSync(values, { abortEarly: false });
 
       Keyboard.dismiss();
-      navigation.navigate('HomeScreen', {
-        user: values,
-      });
+
+      await signIn(values);
     } catch (errors) {
       if (errors instanceof Yup.ValidationError) {
         setValidationErrors(formRef, errors);
@@ -57,8 +61,10 @@ const SignInScreen = ({navigation}) => {
   return (
     <ScrollView
       contentContainerStyle={{flexGrow: 1}}
+      showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
-      style={styles.container}>
+      style={styles.container}
+    >
       <View style={styles.containerHeader}>
         <Rectangle153 />
         <Image
@@ -74,20 +80,18 @@ const SignInScreen = ({navigation}) => {
           validateOnChange={false}
           validateOnBlur={false}
           initialValues={{
-            cpf: '',
+            email: '',
             password: '',
           }}>
           {({handleChange, handleBlur, handleSubmit, values, errors}) => (
             <>
-              <InputMask
-                mask={Masks.BRL_CPF}
-                label={'CPF'}
-                placeholder={'Digite o seu CPF'}
-                value={values.cpf}
-                error={errors.cpf ?? undefined}
-                onChangeText={handleChange('cpf')}
-                onBlur={handleBlur('cpf')}
-                keyboardType="numeric"
+              <Input
+                label={'E-mail'}
+                placeholder={'Digite o seu e-mail'}
+                value={values.email}
+                error={errors.email ?? undefined}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
               />
 
               <InputPassword
@@ -109,7 +113,14 @@ const SignInScreen = ({navigation}) => {
                   }
                 }}
               />
-              <Button
+
+              <Text style={styles.textPassword} onPress={() => {
+                handleSignUpScreen();
+              }}>
+                Abrir Conta
+              </Text>
+
+              {/* <Button
                 isLoading={isLoading}
                 title={'Abrir Conta'}
                 style={{marginTop: 20}}
@@ -118,7 +129,7 @@ const SignInScreen = ({navigation}) => {
                     handleSignUpScreen();
                   }
                 }}
-              />
+              /> */}
             </>
           )}
         </Formik>

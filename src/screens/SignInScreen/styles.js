@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import theme from '../../global/styles/theme';
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFF',
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     height: 55,
     borderRadius: 30,
-    backgroundColor: "#2382F7",
+    backgroundColor: theme.colors.PRIMARY,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -43,10 +45,16 @@ const styles = StyleSheet.create({
   containerHeader:{
     position:'relative',
     alignItems:'center',
-    marginBottom:150
-  }
+    marginBottom: 125
+  },
+  textPassword:{
+    fontFamily: theme.fonts.REGULAR,
+    color: theme.colors.TEXT,
+    fontSize: 14,
 
-  
+    textAlign: "center",
+    marginTop: 20
+  }
 })
 
 export default styles;

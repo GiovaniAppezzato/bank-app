@@ -9,9 +9,9 @@ const { Navigator, Screen } = createNativeStackNavigator();
 export default function AppRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
+      <Screen name='HomeScreen' component={HomeScreen} />
       <Screen name='CardsScreen' component={CardsScreen} />
       <Screen name='BankStatementScreen' component={BankStatementScreen} />
-      <Screen name='HomeScreen' component={HomeScreen} />
     </Navigator>
   )
 }

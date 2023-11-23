@@ -16,12 +16,11 @@ import { useAuth } from '../../hooks/useAuth';
 
 const schema = Yup.object().shape({
   photo: Yup.object().shape({
-    uri: Yup.string()
-      .required('A foto é obrigatória'),
+    uri: Yup.string().required('A foto é obrigatória'),
   }),
 });
 
-const SignUpScreenPhoto = ({ navigation }) => {
+const SignUpScreenPhoto = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isVisiblePhotoModal, setIsVisiblePhotoModal] = useState(false);
 
@@ -35,13 +34,14 @@ const SignUpScreenPhoto = ({ navigation }) => {
     setIsLoading(true);
 
     try {
-      // schema.validateSync(values, { abortEarly: false });
+      schema.validateSync(values, { abortEarly: false });
 
       await signUp({
         user: route.params?.user,
         address: route.params?.address,
         ...values,
       });
+      
     } catch (errors) {
       if(errors instanceof Yup.ValidationError) {
         setValidationErrors(formRef, errors);
@@ -83,40 +83,37 @@ const SignUpScreenPhoto = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}
-        ref={scrollRef}
+      <ScrollView showsVerticalScrollIndicator={false} ref={scrollRef}
+        contentContainerStyle={{ 
+          flexGrow: 1 
+        }}
       >
         <Header />
-        <StatusBar 
-          barStyle="dark-content"
-          backgroundColor={theme.colors.BACKGROUND}
-        />
+        <Formik
+          innerRef={formRef}
+          onSubmit={onSubmit}
+          validateOnChange={false}
+          validateOnBlur={false}
+          initialValues={{
+            photo: {
+              uri: "",
+              type: "",
+              name: "",
+            }
+          }}
+        >
+          {({ handleSubmit, values, errors }) => (
+            <View style={{ flex: 1, paddingHorizontal: 25, paddingBottom: 25, justifyContent: "space-between" }}>
+              <View>
+                <View>
+                  <Text style={styles.titleXl}>
+                    Foto de perfil.
+                  </Text>
+                  <Text style={[styles.text, { marginBottom: 45 }]}>
+                    Por último, precisamos que você adicione uma foto de perfil para a sua identicação.
+                  </Text>
+                </View>
 
-        <View style={styles.main}>
-          <View>
-            <Text style={styles.titleXl}>
-              Foto de perfil.
-            </Text>
-            <Text style={[styles.text, { marginBottom: 45 }]}>
-              Por último, precisamos que você adicione uma foto de perfil para a sua identicação.
-            </Text>
-          </View>
-          
-          <Formik
-            innerRef={formRef}
-            onSubmit={onSubmit}
-            validateOnChange={false}
-            validateOnBlur={false}
-            initialValues={{
-              photo: {
-                uri: "",
-                type: "",
-                name: "",
-              }
-            }}
-          >
-            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-              <>
                 {values.photo.uri === "" ? (
                   <View style={[ styles.wrapperPhoto, { marginBottom: 35 } ]}>
                     <View style={[
@@ -180,18 +177,23 @@ const SignUpScreenPhoto = ({ navigation }) => {
                   onImageSelected={onImageSelected}
                   onRemoveImage={onRemoveImage}
                 />
+              </View>
 
+              <View>
                 <Button 
+                  isLoading={isLoading}
                   title="Realizar cadastro"
                   style={{ marginTop: 30 }}
                   onPress={() => {
-                    handleSubmit();
+                    if(!isLoading) {
+                      handleSubmit();
+                    }
                   }}
                 />
-              </>
-            )}
-          </Formik>
-        </View>
+              </View>
+            </View>
+          )}
+        </Formik>
       </ScrollView>
     </SafeAreaView>
   )

@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { SafeAreaView, View, Text, ScrollView, StatusBar, ActivityIndicator, Keyboard } from 'react-native'
 import { useRoute } from '@react-navigation/native';
 import { Masks } from "react-native-mask-input";
 import { Formik } from "formik";
 import * as Yup from 'yup';
+import axios from 'axios';
 
 import styles from './styles';
 import theme from '../../global/styles/theme';
@@ -38,7 +39,7 @@ const SignUpScreenAddress = ({ navigation }) => {
 
   function onSubmit(values) {
     try {
-      // schema.validateSync(values, { abortEarly: false });
+      schema.validateSync(values, { abortEarly: false });
 
       Keyboard.dismiss();
 
@@ -55,8 +56,21 @@ const SignUpScreenAddress = ({ navigation }) => {
     }
   }
 
-  function autoFillAddressByZipCode(text) {
-    // ...
+  async function autoFillAddressByZipCode(text) {
+    setIsLoadingAddress(true);
+
+    try {   
+      const response = await axios.get(`https://viacep.com.br/ws/${text}/json`);
+
+      formRef?.current?.setFieldValue('state', response.data.uf);
+      formRef?.current?.setFieldValue('city', response.data.localidade);
+      formRef?.current?.setFieldValue('neighborhood', response.data.bairro);
+      formRef?.current?.setFieldValue('street', response.data.logradouro);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoadingAddress(false);
+    }
   }
 
   return (
@@ -111,7 +125,7 @@ const SignUpScreenAddress = ({ navigation }) => {
                       formRef?.current?.setFieldValue('zip_code', text);
 
                       if(text.length === 9 && !isLoadingAddress) {
-                        autoFillAddressByZipCode(text);
+                        autoFillAddressByZipCode(text.replace('-', ''));
                       }
                     }}
                   />  

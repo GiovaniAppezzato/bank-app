@@ -10,6 +10,7 @@ import {
 import {Masks} from 'react-native-mask-input';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+
 import styles from './styles';
 import theme from '../../global/styles/theme';
 import Header from '../../components/Header';
@@ -17,6 +18,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Formik/Input';
 import InputMask from '../../components/Formik/InputMask';
 import InputPassword from '../../components/Formik/InputPassword';
+import InputSex from '../../components/Formik/InputSex';
 import {setValidationErrors} from '../../utils/yupUtils';
 
 const schema = Yup.object().shape({
@@ -25,7 +27,10 @@ const schema = Yup.object().shape({
   email: Yup.string()
     .email('Digite um e-mail válido')
     .required('O e-mail é obrigatório'),
-  birth: Yup.string().required('A data de nascimento é obrigatória'),
+  cpf: Yup.string()
+    .required('O CPF é obrigatório'),
+  birth: Yup.string()
+    .required('A data de nascimento é obrigatória'),
   password: Yup.string()
     .min(6, 'A senha deve ter no mínimo 6 caracteres')
     .required('A senha é obrigatória'),
@@ -44,12 +49,17 @@ const SignUpScreen = ({navigation}) => {
     setIsLoading(true);
 
     try {
-      // schema.validateSync(values, { abortEarly: false });
+      schema.validateSync(values, { abortEarly: false });
 
       Keyboard.dismiss();
 
+      const data = {
+        ...values,
+        birth: values.birth.split('/').reverse().join('-'),
+      }
+
       navigation.navigate('SignUpAddressScreen', {
-        user: values,
+        user: data,
       });
     } catch (errors) {
       if (errors instanceof Yup.ValidationError) {
@@ -87,13 +97,14 @@ const SignUpScreen = ({navigation}) => {
             initialValues={{
               name: "",
               email: "",
+              cpf: "",
               password: "",
               confirm_password: "",
               sex: "M",
               birth: "",
             }}
           >
-            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+            {({ handleChange, handleBlur, handleSubmit, values, errors, setFieldValue }) => (
               <>
                 <Input
                   label={'Nome completo'}
@@ -112,6 +123,17 @@ const SignUpScreen = ({navigation}) => {
                   error={errors.email ?? undefined}
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
+                />
+
+                <InputMask
+                  mask={Masks.BRL_CPF}
+                  label={'CPF'}
+                  placeholder={'Digite seu CPF'}
+                  value={values.cpf}
+                  error={errors.cpf ?? undefined}
+                  onChangeText={handleChange('cpf')}
+                  onBlur={handleBlur('cpf')}
+                  keyboardType="numeric"
                 />
 
                 <InputMask
@@ -143,61 +165,12 @@ const SignUpScreen = ({navigation}) => {
                   onBlur={handleBlur('confirm_password')}
                 />
 
-                <View style={{marginTop: 15}}>
-                  <Text
-                    style={{
-                      fontFamily: theme.fonts.MEDIUM,
-                      fontSize: 15,
-                      color: theme.colors.TEXT,
-                      marginLeft: 5,
-                      marginBottom: 5,
-                    }}>
-                    Sexo
-                  </Text>
-
-                  <View
-                    style={{
-                      backgroundColor: theme.colors.SHAPE,
-                      padding: 5,
-                      borderRadius: 15,
-                      width: '100%',
-                      flexDirection: 'row',
-                    }}>
-                    <View
-                      style={{
-                        width: '50%',
-                        backgroundColor: theme.colors.BACKGROUND,
-                        borderRadius: 15,
-                      }}>
-                      <Text
-                        style={{
-                          textAlign: 'center',
-                          fontFamily: theme.fonts.REGULAR,
-                          color: theme.colors.TEXT,
-                          padding: 16,
-                        }}>
-                        Masculino
-                      </Text>
-                    </View>
-
-                    <View
-                      style={{
-                        width: '50%',
-                        backgroundColor: theme.colors.SHAPE,
-                        borderRadius: 15,
-                      }}>
-                      <Text
-                        style={{
-                          textAlign: 'center',
-                          fontFamily: theme.fonts.REGULAR,
-                          color: theme.colors.TEXT,
-                          padding: 16,
-                        }}>
-                        Feminino
-                      </Text>
-                    </View>
-                  </View>
-                </View>
+                <InputSex
+                  label={'Sexo'}
+                  style={{marginTop: 15}}
+                  value={values.sex}
+                  formRef={formRef}
+                />
 
                 <Button
                   isLoading={isLoading}
