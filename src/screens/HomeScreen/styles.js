@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
         paddingBottom:30,
         backgroundColor: theme.colors.PRIMARY,
         borderBottomLeftRadius: 35,
-        borderBottomRightRadius: 35
+        borderBottomRightRadius: 35,
+        elevation:10
     },
     profileImage: {
         width: 48,
@@ -39,8 +40,9 @@ const styles = StyleSheet.create({
     cardBalance:{
         padding:20,
         width:'100%',
-        backgroundColor: '#rgba(255,255,255,0.25)',
+        backgroundColor: '#4b9cf9',
         borderRadius: 16,
+        elevation:25
     },
     textSaldo: {
         fontFamily: theme.fonts.REGULAR,
@@ -54,6 +56,34 @@ const styles = StyleSheet.create({
         color: '#FFF',
         textAlign: 'center'
     },
+    rowItens: {
+        flexDirection:'row',
+        padding:20,
+        width: '100%',
+        marginTop: 40,
+    },
+    button: {
+        backgroundColor: 'white', 
+        padding:10,
+        borderRadius: 20, 
+        // borderWidth: 2, 
+        // borderColor: '#D9D9D9',
+        width: 110, 
+        height: 134,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        elevation:11,
+        marginRight: 20,
+        shadowColor: 'black'
+    },
+    textButton: {
+        fontFamily: theme.fonts.MEDIUM,
+        color: theme.colors.TEXT,
+        fontSize: 14,
+        marginTop:10
+    },
+
   })
 
   export default styles;
