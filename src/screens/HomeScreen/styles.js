@@ -10,9 +10,12 @@ const styles = StyleSheet.create({
         padding:25,
         paddingBottom:30,
         backgroundColor: theme.colors.PRIMARY,
-        borderBottomLeftRadius: 35,
-        borderBottomRightRadius: 35,
-        elevation:10
+        borderBottomLeftRadius: 50,
+        borderBottomRightRadius: 50,
+        elevation:10,
+        shadowColor:'blue',
+        alignItems:'center'
+
     },
     profileImage: {
         width: 48,
@@ -38,11 +41,11 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     cardBalance:{
-        padding:20,
-        width:'100%',
+        padding: 20,
+        width:'80%',
         backgroundColor: '#4b9cf9',
         borderRadius: 16,
-        elevation:25
+        elevation:25,
     },
     textSaldo: {
         fontFamily: theme.fonts.REGULAR,
@@ -60,6 +63,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         padding:20,
         width: '100%',
+        height:'auto',
         marginTop: 40,
     },
     button: {
@@ -72,10 +76,10 @@ const styles = StyleSheet.create({
         height: 134,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
-        elevation:11,
+        elevation:0,
         marginRight: 20,
-        shadowColor: 'black'
+        shadowColor: 'black',
+        backgroundColor: theme.colors.SHAPE,
     },
     textButton: {
         fontFamily: theme.fonts.MEDIUM,
@@ -83,7 +87,38 @@ const styles = StyleSheet.create({
         fontSize: 14,
         marginTop:10
     },
-
+    rowTransactions: {
+        flexDirection: 'column',
+        padding:20,
+    },
+    cardTransactions:{
+        marginTop: 20,
+        flexDirection: 'row',
+        borderRadius: 20,
+        padding: 10,
+        height:75,
+        shadowColor: 'black',
+        backgroundColor: theme.colors.SHAPE,
+        alignItems: 'center',
+        borderColor: 'blue',
+    },
+    nameTransactions:{
+        marginLeft: 10,
+        fontFamily: theme.fonts.SEMI_BOLD,
+        color: theme.colors.TEXT,
+        fontSize: 13
+    },
+    valueTransactions:{
+        marginLeft: 10,
+        fontFamily: theme.fonts.SEMI_BOLD,
+        color: theme.colors.TEXT,
+        fontSize: 13,
+    },
+    dateTrasansactions:{
+        marginLeft: 'auto',
+        fontFamily: theme.fonts.REGULAR,
+        color: theme.colors.TEXT_LIGHT,
+    }
   })
 
   export default styles;
