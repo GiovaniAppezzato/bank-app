@@ -22,15 +22,12 @@ import InputSex from '../../components/Formik/InputSex';
 import {setValidationErrors} from '../../utils/yupUtils';
 
 const schema = Yup.object().shape({
-  name: Yup.string()
-    .required('O nome é obrigatório'),
+  name: Yup.string().required('O nome é obrigatório'),
   email: Yup.string()
     .email('Digite um e-mail válido')
     .required('O e-mail é obrigatório'),
-  cpf: Yup.string()
-    .required('O CPF é obrigatório'),
-  birth: Yup.string()
-    .required('A data de nascimento é obrigatória'),
+  cpf: Yup.string().required('O CPF é obrigatório'),
+  birth: Yup.string().required('A data de nascimento é obrigatória'),
   password: Yup.string()
     .min(6, 'A senha deve ter no mínimo 6 caracteres')
     .required('A senha é obrigatória'),
@@ -49,14 +46,14 @@ const SignUpScreen = ({navigation}) => {
     setIsLoading(true);
 
     try {
-      schema.validateSync(values, { abortEarly: false });
+      schema.validateSync(values, {abortEarly: false});
 
       Keyboard.dismiss();
 
       const data = {
         ...values,
         birth: values.birth.split('/').reverse().join('-'),
-      }
+      };
 
       navigation.navigate('SignUpAddressScreen', {
         user: data,
@@ -95,16 +92,22 @@ const SignUpScreen = ({navigation}) => {
             validateOnChange={false}
             validateOnBlur={false}
             initialValues={{
-              name: "",
-              email: "",
-              cpf: "",
-              password: "",
-              confirm_password: "",
-              sex: "M",
-              birth: "",
-            }}
-          >
-            {({ handleChange, handleBlur, handleSubmit, values, errors, setFieldValue }) => (
+              name: '',
+              email: '',
+              cpf: '',
+              password: '',
+              confirm_password: '',
+              sex: 'M',
+              birth: '',
+            }}>
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              errors,
+              setFieldValue,
+            }) => (
               <>
                 <Input
                   label={'Nome completo'}
