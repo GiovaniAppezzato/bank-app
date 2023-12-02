@@ -10,21 +10,20 @@ const styles = StyleSheet.create({
         padding:25,
         paddingBottom:30,
         backgroundColor: theme.colors.PRIMARY,
-        borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50,
-        elevation:10,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
         shadowColor:'blue',
         alignItems:'center'
-
     },
     profileImage: {
-        width: 48,
-        height: 48,
+        width: 44,
+        height: 44,
         borderWidth: 2,
         borderColor: 'white',
         borderRadius: 100,
         overflow: 'hidden', 
         alignItems: 'center',
+        marginRight: 15
     },
     image:{
         flex: 1,
@@ -32,24 +31,28 @@ const styles = StyleSheet.create({
     textHeader:{
         fontFamily: theme.fonts.MEDIUM,
         color: '#FFF',
-        marginLeft: 10
     },
     rowHeader: {
+        width: '100%',
         flexDirection: 'row',
-        alignItems:'center',
-        justifyContent:'center',
-        marginBottom: 20
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 25
+    },
+    wrapperImage: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     cardBalance:{
         padding: 20,
-        width:'80%',
+        width: '100%',
         backgroundColor: '#4b9cf9',
         borderRadius: 16,
-        elevation:25,
+        // elevation:25,
     },
     textSaldo: {
         fontFamily: theme.fonts.REGULAR,
-        fontSize: 18,
+        fontSize: 16,
         color: '#FFF',
         textAlign: 'center'
     },
@@ -61,23 +64,19 @@ const styles = StyleSheet.create({
     },
     rowItens: {
         flexDirection:'row',
-        padding:20,
         width: '100%',
         height:'auto',
-        marginTop: 40,
     },
     button: {
         backgroundColor: 'white', 
         padding:10,
-        borderRadius: 20, 
-        // borderWidth: 2, 
-        // borderColor: '#D9D9D9',
+        borderRadius: 15, 
         width: 110, 
         height: 134,
         alignItems: 'center',
         justifyContent: 'center',
         elevation:0,
-        marginRight: 20,
+        marginRight: 15,
         shadowColor: 'black',
         backgroundColor: theme.colors.SHAPE,
     },
@@ -85,22 +84,25 @@ const styles = StyleSheet.create({
         fontFamily: theme.fonts.MEDIUM,
         color: theme.colors.TEXT,
         fontSize: 14,
-        marginTop:10
+        marginTop: 15
+    },
+    titleTransactions: {
+        fontFamily: theme.fonts.SEMI_BOLD,
+        color: theme.colors.TEXT,
+        fontSize: 14,
+        marginBottom: 15
     },
     rowTransactions: {
         flexDirection: 'column',
-        padding:20,
+        paddingHorizontal: 25,
     },
     cardTransactions:{
-        marginTop: 20,
         flexDirection: 'row',
-        borderRadius: 20,
-        padding: 10,
-        height:75,
-        shadowColor: 'black',
+        borderRadius: 15,
+        padding: 20,
         backgroundColor: theme.colors.SHAPE,
+        marginBottom: 15,
         alignItems: 'center',
-        borderColor: 'blue',
     },
     nameTransactions:{
         marginLeft: 10,
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     },
     valueTransactions:{
         marginLeft: 10,
-        fontFamily: theme.fonts.SEMI_BOLD,
+        fontFamily: theme.fonts.REGULAR,
         color: theme.colors.TEXT,
         fontSize: 13,
     },

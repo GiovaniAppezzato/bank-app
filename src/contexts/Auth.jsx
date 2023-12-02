@@ -57,8 +57,8 @@ export const AuthProvider = ({ children }) => {
 
     const plainTextToken = token.plainTextToken;
 
-    setToken(plainTextToken);
     setUser(user);
+    setToken(plainTextToken);
 
     await AsyncStorage.setItem('@cm:token', plainTextToken);
     await AsyncStorage.setItem('@cm:user', user.id.toString());

@@ -15,6 +15,7 @@ export const buildFormDataSignUp = (data) => {
   formData.append('street', data.address.street);
   formData.append('number', data.address.number);
   formData.append('complement', data.address.complement); 
+  formData.append('photo', data.photo);
 
   return formData;
 }

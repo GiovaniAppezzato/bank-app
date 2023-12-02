@@ -80,8 +80,8 @@ const SignInScreen = ({navigation}) => {
           validateOnChange={false}
           validateOnBlur={false}
           initialValues={{
-            email: 'giovani.appezzato@gmail.com',
-            password: 'giovani2',
+            email: 'giovani.apztt@gmail.com',
+            password: '123456',
           }}>
           {({handleChange, handleBlur, handleSubmit, values, errors}) => (
             <>

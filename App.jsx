@@ -4,9 +4,9 @@ import { Host } from 'react-native-portalize';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import theme from './src/global/styles/theme';
 import Routes from "./src/routes";
 import { AuthProvider } from './src/contexts/Auth';
-import theme from './src/global/styles/theme';
 
 function App() {
   return (

@@ -4,6 +4,7 @@ const theme = {
     PRIMARY_LIGHT: 'rgba(35, 130, 247, 0.10)',
     SECONDARY:  '#0160A6',
     DANGER:     '#CE1818',
+    SUCCESS:    '#05846D',
     SHAPE:      '#f7f8fa',
     BACKGROUND: '#ffffff',
     PLACEHOLDER:'#969CB2',

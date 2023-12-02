@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   textButton: {
     fontFamily: theme.fonts.SEMI_BOLD,
-    color: theme.colors.TEXT_DARK,
+    color: theme.colors.TEXT,
     marginLeft: 10,
   },
   titleMoreActions: {

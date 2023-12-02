@@ -7,7 +7,7 @@ import SignUpPhoto from "../screens/SignUpPhotoScreen";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
-export default function AuthRoutes() {
+export function AuthRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name='SignInScreen' component={SignInScreen} />

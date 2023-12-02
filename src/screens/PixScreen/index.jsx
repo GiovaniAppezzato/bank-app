@@ -54,10 +54,10 @@ const PixScreen = ({ navigation }) => {
           <View style={{ marginBottom: 45 }}>
             <TouchableOpacity style={styles.button} onPress={() => handleToggleModal()}>
               <View style={styles.rowButton}>
-                <FontAwesome6 name="money-bill-transfer" size={22} color={theme.colors.TEXT_DARK} />
+                <FontAwesome6 name="money-bill-transfer" size={22} color={theme.colors.TEXT} />
                 <Text style={styles.textButton}>Pagar</Text>
               </View>
-              <FontAwesome6 name="chevron-right" size={16} color={theme.colors.TEXT_DARK} />
+              <FontAwesome6 name="chevron-right" size={16} color={theme.colors.TEXT} />
             </TouchableOpacity>
           </View>
 
