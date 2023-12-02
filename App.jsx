@@ -12,7 +12,10 @@ function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <RootSiblingParent>
-        <StatusBar barStyle="light-content" backgroundColor={theme.colors.PRIMARY} />
+        <StatusBar 
+          barStyle="light-content" 
+          backgroundColor={theme.colors.PRIMARY} 
+        />
         <Host>
           <AuthProvider>
             <Routes />

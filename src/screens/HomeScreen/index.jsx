@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Image,
@@ -6,14 +6,14 @@ import {
   TouchableOpacity, 
   ScrollView
 } from 'react-native';
+
 import styles from './styles';
-import { useAuth } from '../../hooks/useAuth';
 import monkey from '../../assets/images/monkey.jpg'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import theme from '../../global/styles/theme';
+import { useAuth } from '../../hooks/useAuth';
 
-
-const HomeScreen  = ({navigation}) => {
+const HomeScreen  = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuth();
 
@@ -38,7 +38,6 @@ const HomeScreen  = ({navigation}) => {
     </View>
     
     <ScrollView horizontal={true} >
-
       <View style={styles.rowItens} >
       <TouchableOpacity style={styles.button}>
         <Icon name="dollar" size={30} color={theme.colors.TEXT} />
@@ -67,7 +66,6 @@ const HomeScreen  = ({navigation}) => {
           Cartões
         </Text>
       </TouchableOpacity> 
-
       </View>
     </ScrollView>
   </View>
