@@ -12,11 +12,13 @@ import {Formik} from 'formik';
 const LoansScreen = ({navigation}) => {
   const modalRef = useRef(null);
   const formRef = useRef(null);
+
   function onSubmit(values) {
     try {
       console.log(values);
     } catch (errors) {}
   }
+
   return (
     <React.Fragment>
       <StatusBar
@@ -37,22 +39,22 @@ const LoansScreen = ({navigation}) => {
             <View style={styles.cardContainer}>
               <View style={styles.cardLoan}>
                 <Text style={styles.textLoan}> Valor Disponível</Text>
-                <Text style={styles.textValue}>R$ 1.000,00</Text>
+                <Text style={styles.textValue}>R$ 10.000,00</Text>
                 <InputMask
                   placeholder={'Digite um valor'}
-                  value={values.key}
-                  error={errors.key ?? undefined}
+                  value={values.amount}
+                  error={errors.amount ?? undefined}
                   mask={Masks.BRL_CURRENCY}
-                  onChangeText={handleChange('key')}
-                  onBlur={handleBlur('key')}
+                  onChangeText={handleChange('amount')}
+                  onBlur={handleBlur('amount')}
                   keyboardType="numeric"
                   fontSize={14}
                   style={{
                     backgroundColor: theme.colors.BACKGROUND,
                   }}
                 />
+
                 <Button
-                  color={'#2382F7'}
                   title={'Solicitar'}
                   titleStyle={{
                     color: 'white',
@@ -62,9 +64,10 @@ const LoansScreen = ({navigation}) => {
                   style={{
                     marginTop: 10,
                     borderRadius: 20,
-                    width: '80%',
                   }}
-                  onPress={() => {}}
+                  onPress={() => {
+                    handleSubmit();
+                  }}
                 />
               </View>
             </View>

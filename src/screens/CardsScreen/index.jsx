@@ -9,6 +9,7 @@ import theme from "../../global/styles/theme";
 import Header from "../../components/Header";
 import Loading from "../../components/Loading";
 import { useAccount } from "../../hooks/useAccount";
+import Button from "../../components/Button";
 
 const CardsScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,16 +38,6 @@ const CardsScreen = ({ navigation }) => {
         <View style={styles.main}>
           <View>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('CardCreateScreen')}
-                style={styles.cardAdd}
-              >
-                <View style={{ alignItems: "center" }}>
-                  <AntDesign name="pluscircleo" size={50} color={theme.colors.SECONDARY} />
-                  <Text style={[styles.titleSm, { color: theme.colors.SECONDARY, marginTop: 15 }]}>Pedir cartão</Text>
-                </View>
-              </TouchableOpacity>
-
               {cards.map(card => (
                 <View style={styles.card} key={card.id}>
                   <View style={styles.cardHeader}>
@@ -68,7 +59,29 @@ const CardsScreen = ({ navigation }) => {
                   </Text>
                 </View>
               ))}
+
+              {cards.length <= 1 && (
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('CardCreateScreen')}
+                  style={styles.cardAdd}
+                >
+                  <View style={{ alignItems: "center" }}>
+                    <AntDesign name="pluscircleo" size={50} color={theme.colors.SECONDARY} />
+                    <Text style={[styles.titleSm, { color: theme.colors.SECONDARY, marginTop: 15 }]}>Pedir cartão</Text>
+                  </View>
+                </TouchableOpacity>
+              )}
             </ScrollView>
+
+            {cards.length > 1 && (
+              <Button 
+                title={'Pedir cartão'}
+                color={theme.colors.PRIMARY_LIGHT}
+                titleStyle={{ color: theme.colors.SECONDARY, fontFamily: theme.fonts.MEDIUM }}
+                onPress={() => navigation.navigate('CardCreateScreen')}
+                style={{ marginTop: 30 }}
+              />
+            )}
           </View>
 
           <View style={{ marginTop: 35 }}>
