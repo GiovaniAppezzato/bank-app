@@ -9,6 +9,7 @@ export const AccountContext = createContext();
 
 export const AccountProvider = ({ children }) => {
   const [account, setAccount] = useState(null);
+  const [cards, setCards] = useState([]);
   const [extract, setExtract] = useState([
     {
       id: 1,
@@ -92,12 +93,42 @@ export const AccountProvider = ({ children }) => {
     }
   }
 
+  async function getCards() {
+    try {
+      const response = await api.get('/cards');
+
+      const { cards } = response.data;
+      setCards(cards);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function createCard(values) {
+    try {
+      const response = await api.post('/cards', values);
+
+      const { card } = response.data;
+      setCards([...cards, card]);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  
+  }
+
   return (
     <AccountContext.Provider
       value={{
         account,
+        cards,
         extract,
         getAccount,
+        getCards,
+        createCard,
         transfer,
         pixTransfer,
       }}>
