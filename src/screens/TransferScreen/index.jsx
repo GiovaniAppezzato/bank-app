@@ -42,7 +42,8 @@ const TransferScreen = ({ navigation }) => {
             {({handleChange, handleBlur, handleSubmit, values, errors}) => (
               <View style={styles.main}>
                 <View>
-                  <Input
+                  <InputMask
+                    mask={[/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/]}
                     label={'Conta'}
                     placeholder={'Digite o número da conta'}
                     value={values.number}

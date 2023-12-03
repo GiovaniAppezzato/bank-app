@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation }) => {
   const [isShowBalance, setIsShowBalance] = useState(false);
 
   const { user } = useAuth();
-  const { account, getAccount } = useAccount();
+  const { account, extract, getAccount } = useAccount();
 
   useEffect(() => {
     loadData();
@@ -36,44 +36,6 @@ const HomeScreen = ({ navigation }) => {
       setIsLoading(false);
     }
   }
-
-  const transactions = [
-    {
-      id: 1,
-      name: 'Transferência Recebida',
-      value: 1000,
-      date: '11 Nov',
-      type: 'success'
-    },
-    {
-      id: 2,
-      name: 'Pix enviado',
-      value: 1000,
-      date: '11 Nov',
-      type: 'danger'
-    },
-    {
-      id: 3,
-      name: 'Transferência Recebida',
-      value: 1000,
-      date: '11 Nov',
-      type: 'success'
-    },
-    {
-      id: 4,
-      name: 'Transferência Recebida',
-      value: 1000,
-      date: '11 Nov',
-      type: 'success'
-    },
-    {
-      id: 5,
-      name: 'Transferência Recebida',
-      value: 1000,
-      date: '11 Nov',
-      type: 'success'
-    }
-  ]
 
   function handleNavigationscreen(screen) {
     navigation.navigate(screen);
@@ -159,7 +121,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.rowTransactions}>
           <Text style={styles.titleTransactions}>últimas transações</Text>
 
-          {transactions.map((transaction) => (
+          {extract.map((transaction) => (
             <TouchableOpacity style={styles.cardTransactions} key={transaction.id}>
               <AntDesign 
                 style={{marginRight: 15}} 

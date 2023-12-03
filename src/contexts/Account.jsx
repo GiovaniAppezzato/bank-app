@@ -9,6 +9,43 @@ export const AccountContext = createContext();
 
 export const AccountProvider = ({ children }) => {
   const [account, setAccount] = useState(null);
+  const [extract, setExtract] = useState([
+    {
+      id: 1,
+      name: 'Transferência Recebida',
+      value: 1000,
+      date: '11 Nov',
+      type: 'success'
+    },
+    {
+      id: 2,
+      name: 'Pix enviado',
+      value: 1000,
+      date: '11 Nov',
+      type: 'danger'
+    },
+    {
+      id: 3,
+      name: 'Transferência Recebida',
+      value: 1000,
+      date: '11 Nov',
+      type: 'success'
+    },
+    {
+      id: 4,
+      name: 'Transferência Recebida',
+      value: 1000,
+      date: '11 Nov',
+      type: 'success'
+    },
+    {
+      id: 5,
+      name: 'Transferência Recebida',
+      value: 1000,
+      date: '11 Nov',
+      type: 'success'
+    }
+  ]);
 
   const { token } = useAuth();
 
@@ -33,6 +70,7 @@ export const AccountProvider = ({ children }) => {
     <AccountContext.Provider
       value={{
         account,
+        extract,
         getAccount
       }}>
       {children}
