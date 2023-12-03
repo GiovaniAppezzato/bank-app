@@ -9,6 +9,7 @@ import theme from "../../global/styles/theme";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import InputMask from "../../components/Formik/InputMask";
+import Toast from "../../utils/toastUtils";
 import { setValidationErrors } from '../../utils/yupUtils';
 import { useAccount } from "../../hooks/useAccount";
 
@@ -31,6 +32,11 @@ const PixConfirmScreen = ({ navigation, route }) => {
       schema.validateSync(values, { abortEarly: false });
 
       const amount = Number(values.amount.replace('R$', '').replace('.', '').replace(',', '.').trim());
+
+      if(amount > account.balance) {
+        Toast.show('Não há saldo suficiente para realizar a transferência');
+        return;
+      }
 
       await pixTransfer(pixKey, amount);
 

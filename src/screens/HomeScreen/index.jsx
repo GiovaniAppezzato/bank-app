@@ -14,7 +14,6 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
 import theme from '../../global/styles/theme';
-import monkey from '../../assets/images/monkey.jpg';
 import config from '../../global/config';
 import Loading from '../../components/Loading';
 import {useAuth} from '../../hooks/useAuth';

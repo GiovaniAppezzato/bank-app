@@ -9,6 +9,7 @@ import theme from "../../global/styles/theme";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import InputMask from "../../components/Formik/InputMask";
+import Toast from "../../utils/toastUtils";
 import { setValidationErrors } from '../../utils/yupUtils';
 import { useAccount } from "../../hooks/useAccount";
 
@@ -21,7 +22,7 @@ const TransferScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const formRef = useRef(null);
-  const { transfer } = useAccount();
+  const { account, transfer } = useAccount();
 
   async function onSubmit(values) {
     setIsLoading(true);
@@ -31,9 +32,12 @@ const TransferScreen = ({ navigation }) => {
 
       const amount = Number(values.amount.replace('R$', '').replace('.', '').replace(',', '.').trim());
 
-      await transfer(values.number, amount);
-
-      navigation.navigate('HomeScreen');
+      if(amount > account.balance) {
+        Toast.show('Não há saldo suficiente para realizar a transferência');
+      } else {
+        await transfer(values.number, amount);
+        navigation.navigate('HomeScreen');
+      }
     } catch (errors) {
       if (errors instanceof Yup.ValidationError) {
         setValidationErrors(formRef, errors);

@@ -3,16 +3,18 @@ import { SafeAreaView, StatusBar, View, TouchableOpacity, Text, ScrollView } fro
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { Modalize } from 'react-native-modalize';
 import { Portal } from 'react-native-portalize';
-import { Masks } from 'react-native-mask-input';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 import api from "../../services/api";
 import styles from "./styles";
 import theme from "../../global/styles/theme";
+import Toast from "../../utils/toastUtils";
 import Header from "../../components/Header";
 import Input from "../../components/Formik/Input";
 import Button from "../../components/Button";
+import { setValidationErrors } from "../../utils/yupUtils";
+import { useAccount } from "../../hooks/useAccount";
 
 const schema = Yup.object().shape({
   key: Yup.string().required('A chave é obrigatória'),
@@ -24,6 +26,8 @@ const PixScreen = ({ navigation }) => {
 
   const modalRef = useRef(null);
   const formRef = useRef(null);
+
+  const { account } = useAccount();
 
   function handleToggleModal() {
     if(isVisible) {
@@ -42,18 +46,24 @@ const PixScreen = ({ navigation }) => {
       schema.validateSync(values, { abortEarly: false });
 
       const response = await api.get(`/pix-movements/get-account-by-pix-key/${values.key}`);
-      const { account } = response.data;
+      var accountResponse = response.data.account;
 
-      if(account) {
+      if(accountResponse) {
         navigation.navigate('PixConfirmScreen', { 
-          account: response.data.account,
+          account: accountResponse,
           pixKey: values.key,
         });
+      } else {
+        Toast.show('Chave não encontrada');
       }
 
       handleToggleModal();
     } catch (errors) {
-      // ...
+      if(errors instanceof Yup.ValidationError) {
+        setValidationErrors(formRef, errors);
+      } else {
+        Toast.show('Não foi possível continuar');
+      }
     } finally {
       setIsLoading(false);
     }
