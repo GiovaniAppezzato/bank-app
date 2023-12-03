@@ -7,9 +7,10 @@ import HomeScreen from "../screens/HomeScreen";
 import PixScreen from "../screens/PixScreen";
 import PixKeysScreen from "../screens/PixKeysScreen";
 import CardsScreen from "../screens/CardsScreen";
-import TransferScreen from "../screens/TransfersScreen";
+import TransferScreen from "../screens/TransferScreen";
 import LoansScreen from "../screens/LoansScreen";
 import ExtractScreen from "../screens/ExtractScreen";
+import SavingsScreen from "../screens/SavingsScreen";
 
 const AppTab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();
@@ -25,6 +26,7 @@ export function MainRoutes() {
       <MainStack.Screen name='TransferScreen' component={TransferScreen} />
       <MainStack.Screen name='LoansScreen' component={LoansScreen} />
       <MainStack.Screen name='ExtractScreen' component={ExtractScreen} />
+      <MainStack.Screen name='SavingsScreen' component={SavingsScreen} />
     </MainStack.Navigator>
   )
 }

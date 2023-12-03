@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Image, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -9,12 +9,33 @@ import styles from './styles';
 import theme from '../../global/styles/theme';
 import monkey from '../../assets/images/monkey.jpg';
 import config from '../../global/config';
+import Loading from '../../components/Loading';
 import { useAuth } from '../../hooks/useAuth';
+import { useAccount } from '../../hooks/useAccount';
 
 const HomeScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [isShowBalance, setIsShowBalance] = useState(false);
 
   const { user } = useAuth();
+  const { account, getAccount } = useAccount();
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  async function loadData() {
+    try {
+      await Promise.all([
+        getAccount()
+      ]);
+      
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const transactions = [
     {
@@ -58,6 +79,12 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate(screen);
   }
 
+  if (isLoading) {
+    return (
+      <Loading />
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -92,7 +119,9 @@ const HomeScreen = ({ navigation }) => {
           
           <View style={styles.cardBalance}>
             <Text style={styles.textSaldo}>Saldo atual</Text>
-            <Text style={styles.textValue}>R$ 347,10</Text>
+            <Text style={styles.textValue}> {/* R$ 347,10 */}
+              {account.balance.toLocaleString('pt-br',{ style: 'currency', currency: 'BRL' })}
+            </Text>
           </View>
         </View>
 
@@ -108,6 +137,11 @@ const HomeScreen = ({ navigation }) => {
             <TouchableOpacity style={styles.button} onPress={() => handleNavigationscreen('CardsScreen')}>
               <FontAwesome size={24} name="credit-card-alt" color={theme.colors.TEXT} />
               <Text style={styles.textButton}>Cartões</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={() => handleNavigationscreen('SavingsScreen')}>
+              <FontAwesome size={24} name="dollar" color={theme.colors.TEXT} />
+              <Text style={styles.textButton}>Poupança</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={() => handleNavigationscreen('LoansScreen')}>

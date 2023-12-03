@@ -5,15 +5,15 @@ import styles from "./styles";
 import theme from "../../global/styles/theme";
 import Header from "../../components/Header";
 
-const TransferScreen = ({ navigation }) => {
+const SavingsScreen = ({ navigation }) => {
   return (
     <React.Fragment>
       <StatusBar barStyle='dark-content' backgroundColor={theme.colors.BACKGROUND} />
       <SafeAreaView style={styles.container}>
-        <Header title={"Transferir"} />
+        <Header title={"Poupança"} />
       </SafeAreaView>
     </React.Fragment>
   )
 };
 
-export default TransferScreen;
+export default SavingsScreen;

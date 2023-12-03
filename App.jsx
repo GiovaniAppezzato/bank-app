@@ -7,6 +7,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import theme from './src/global/styles/theme';
 import Routes from "./src/routes";
 import { AuthProvider } from './src/contexts/Auth';
+import { AccountProvider } from './src/contexts/Account';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
         />
         <Host>
           <AuthProvider>
-            <Routes />
+            <AccountProvider>
+              <Routes />
+            </AccountProvider>
           </AuthProvider>
         </Host>
       </RootSiblingParent>

@@ -6,14 +6,14 @@ const api = axios.create({
   baseURL: config.baseUrl + '/api',
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/json",
+    "Content-Type": "aplication/json",
   }
 });
 
 /* api.interceptors.response.use(
   (response) => {
     return response;
-  },
+  },p
   (error) => {
     const { message } = error.response.data;
 

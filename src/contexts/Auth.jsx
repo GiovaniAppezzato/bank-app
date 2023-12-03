@@ -1,7 +1,4 @@
-import React, { 
-  createContext, 
-  useState 
-} from 'react';
+import React, { createContext, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import api from '../services/api';
@@ -63,7 +60,7 @@ export const AuthProvider = ({ children }) => {
     await AsyncStorage.setItem('@cm:token', plainTextToken);
     await AsyncStorage.setItem('@cm:user', user.id.toString());
 
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    api.defaults.headers.common['Authorization'] = `Bearer ${plainTextToken}`;
   }
 
   function showMessageError(error) {
