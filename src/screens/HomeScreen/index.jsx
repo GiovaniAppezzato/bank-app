@@ -89,8 +89,6 @@ const HomeScreen = ({navigation}) => {
           <View style={styles.cardBalance}>
             <Text style={styles.textSaldo}>Saldo atual</Text>
             <Text style={styles.textValue}>
-              {' '}
-              {/* R$ 347,10 */}
               {account?.balance?.toLocaleString('pt-br', {
                 style: 'currency',
                 currency: 'BRL',

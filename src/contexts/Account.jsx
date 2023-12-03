@@ -10,6 +10,8 @@ export const AccountContext = createContext();
 export const AccountProvider = ({ children }) => {
   const [account, setAccount] = useState(null);
   const [cards, setCards] = useState([]);
+  const [savings, setSavings] = useState(null);
+  const [savingsMovements, setSavingsMovements] = useState([]);
   const [extract, setExtract] = useState([
     {
       id: 1,
@@ -93,6 +95,22 @@ export const AccountProvider = ({ children }) => {
     }
   }
 
+  async function savingsTransfer(amount, type) {
+    try {
+      const response = await api.post('/savings/savings-movements', { amount, type });
+
+      const { savingsMovement, account, savings } = response.data;
+
+      setAccount(account);
+      setSavings(savings);
+      setSavingsMovements([savingsMovement, ...savingsMovements]);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async function getCards() {
     try {
       const response = await api.get('/cards');
@@ -117,20 +135,50 @@ export const AccountProvider = ({ children }) => {
     } catch (error) {
       throw error;
     }
-  
+  }
+
+  async function getSavings() {
+    try {
+      const response = await api.get('/savings');
+
+      const { savings } = response.data;
+      setSavings(savings);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function getSavingsMovements() {
+    try {
+      const response = await api.get('/savings/savings-movements');
+
+      const { savingsMovements } = response.data;
+      setSavingsMovements(savingsMovements);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
   }
 
   return (
     <AccountContext.Provider
       value={{
         account,
+        savings,
+        savingsMovements,
         cards,
         extract,
         getAccount,
+        getSavings,
+        getSavingsMovements,
         getCards,
         createCard,
         transfer,
         pixTransfer,
+        savingsTransfer,
       }}>
       {children}
     </AccountContext.Provider>

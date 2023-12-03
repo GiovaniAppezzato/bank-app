@@ -30,7 +30,7 @@ const Input = ({
           onPress={() => {
             handleChange('Deposit');
           }}>
-          <Text style={styles.optionText}>Guardar</Text>
+          <Text style={styles.optionText}>Depositar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity

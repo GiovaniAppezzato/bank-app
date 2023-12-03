@@ -1,3 +1,3 @@
-const config = { baseUrl: "http://192.168.1.3/bank-api/public" };	
+const config = { baseUrl: "http://192.168.0.65/faculdade/projeto/bank-api/public" };	
 
 export default config;
