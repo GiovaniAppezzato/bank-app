@@ -7,6 +7,7 @@ import HomeScreen from "../screens/HomeScreen";
 import PixScreen from "../screens/PixScreen";
 import PixKeysScreen from "../screens/PixKeysScreen";
 import CardsScreen from "../screens/CardsScreen";
+import CardCreateScreen from "../screens/CardCreateScreen";
 import TransferScreen from "../screens/TransferScreen";
 import LoansScreen from "../screens/LoansScreen";
 import ExtractScreen from "../screens/ExtractScreen";
@@ -24,6 +25,7 @@ export function MainRoutes() {
       <MainStack.Screen name='PixScreen' component={PixScreen} />
       <MainStack.Screen name='PixKeysScreen' component={PixKeysScreen} />
       <MainStack.Screen name='CardsScreen' component={CardsScreen} />
+      <MainStack.Screen name='CardCreateScreen' component={CardCreateScreen} />
       <MainStack.Screen name='TransferScreen' component={TransferScreen} />
       <MainStack.Screen name='LoansScreen' component={LoansScreen} />
       <MainStack.Screen name='ExtractScreen' component={ExtractScreen} />
