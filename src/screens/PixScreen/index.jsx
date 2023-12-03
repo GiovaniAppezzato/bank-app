@@ -7,6 +7,7 @@ import { Masks } from 'react-native-mask-input';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
+import api from "../../services/api";
 import styles from "./styles";
 import theme from "../../global/styles/theme";
 import Header from "../../components/Header";
@@ -15,11 +16,11 @@ import Button from "../../components/Button";
 
 const schema = Yup.object().shape({
   key: Yup.string().required('A chave é obrigatória'),
-  // amount: Yup.string().required('O valor é obrigatório'),
 });
 
 const PixScreen = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const modalRef = useRef(null);
   const formRef = useRef(null);
@@ -34,13 +35,27 @@ const PixScreen = ({ navigation }) => {
     setIsVisible(!isVisible);
   }
 
-  function onSubmit(values) {
+  async function onSubmit(values) {
+    setIsLoading(true);
+
     try {
       schema.validateSync(values, { abortEarly: false });
 
-      console.log(values);
-    } catch (errors) {
+      const response = await api.get(`/pix-movements/get-account-by-pix-key/${values.key}`);
+      const { account } = response.data;
 
+      if(account) {
+        navigation.navigate('PixConfirmScreen', { 
+          account: response.data.account,
+          pixKey: values.key,
+        });
+      }
+
+      handleToggleModal();
+    } catch (errors) {
+      // ...
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -90,7 +105,6 @@ const PixScreen = ({ navigation }) => {
           scrollViewProps={{ showsVerticalScrollIndicator: false }}
           overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
           onClose={() => {
-            console.log('Modalize :: close');
             setIsVisible(false);
           }}
         >
@@ -98,8 +112,7 @@ const PixScreen = ({ navigation }) => {
             innerRef={formRef}
             onSubmit={onSubmit}
             initialValues={{
-              amount: '',
-              description: '',
+              key: 'usuario02@gmail.com',
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -115,21 +128,11 @@ const PixScreen = ({ navigation }) => {
                   onBlur={handleBlur('key')}
                 />
 
-                {/* <InputMask
-                  mask={Masks.BRL}
-                  label={'Valor'}
-                  placeholder={'R$ 0,00'}
-                  value={values.amount}
-                  error={errors.amount ?? undefined}
-                  onChangeText={handleChange('amount')}
-                  onBlur={handleBlur('amount')}
-                  keyboardType='numeric'
-                /> */}
-
                 <Button
                   title='Continuar'
                   onPress={handleSubmit}
                   style={{ marginTop: 15 }}
+                  isLoading={isLoading}
                 />
               </View>
             )}

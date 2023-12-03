@@ -11,6 +11,7 @@ import TransferScreen from "../screens/TransferScreen";
 import LoansScreen from "../screens/LoansScreen";
 import ExtractScreen from "../screens/ExtractScreen";
 import SavingsScreen from "../screens/SavingsScreen";
+import PixConfirmScreen from "../screens/PixConfirmScreen";
 
 const AppTab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ export function MainRoutes() {
       <MainStack.Screen name='LoansScreen' component={LoansScreen} />
       <MainStack.Screen name='ExtractScreen' component={ExtractScreen} />
       <MainStack.Screen name='SavingsScreen' component={SavingsScreen} />
+      <MainStack.Screen name='PixConfirmScreen' component={PixConfirmScreen} />
     </MainStack.Navigator>
   )
 }

@@ -38,6 +38,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  containerModal: {
+    padding: 25,
+  },
+  titleModal: {
+    fontFamily: theme.fonts.SEMI_BOLD,
+    color: theme.colors.TEXT_DARK,
+    fontSize: 16,
+    marginBottom: 15,
+  }
 })
 
 export default styles;

@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
-import { SafeAreaView, StatusBar, View, ScrollView  } from "react-native";
-import * as Yup from 'yup';
+import React, { useState, useRef } from "react";
+import { SafeAreaView, StatusBar, ScrollView, View, Text } from "react-native";
+import { Masks } from 'react-native-mask-input';
 import { Formik } from 'formik';
-import { Masks } from "react-native-mask-input";
+import * as Yup from 'yup';
 
 import styles from "./styles";
 import theme from "../../global/styles/theme";
@@ -14,14 +14,15 @@ import { useAccount } from "../../hooks/useAccount";
 
 const schema = Yup.object().shape({
   amount: Yup.string().required('O valor é obrigatório'),
-  number: Yup.string().required('A conta é obrigatória'),
 });
 
-const TransferScreen = ({ navigation }) => {
+const PixConfirmScreen = ({ navigation, route }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const formRef = useRef(null);
-  const { transfer } = useAccount();
+
+  const { account, pixKey } = route.params;
+  const { pixTransfer } = useAccount();
 
   async function onSubmit(values) {
     setIsLoading(true);
@@ -31,7 +32,7 @@ const TransferScreen = ({ navigation }) => {
 
       const amount = Number(values.amount.replace('R$', '').replace('.', '').replace(',', '.').trim());
 
-      await transfer(values.number, amount);
+      await pixTransfer(pixKey, amount);
 
       navigation.navigate('HomeScreen');
     } catch (errors) {
@@ -52,51 +53,40 @@ const TransferScreen = ({ navigation }) => {
             flexGrow: 1 
           }}
         >
-          <Header title='Para quem?' />
+          <Header title='Enviar pix' />
 
           <Formik
             innerRef={formRef}
             onSubmit={onSubmit}
-            validateOnChange={false}
-            validateOnBlur={false}
             initialValues={{
-              number: '6618718-3',
               amount: '',
             }}
           >
-            {({handleChange, handleBlur, handleSubmit, values, errors}) => (
+            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <View style={styles.main}>
                 <View>
                   <InputMask
-                    mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/]}
-                    label={'Conta'}
-                    placeholder={'Digite o número da conta'}
-                    value={values.number}
-                    error={errors.number ?? undefined}
-                    onChangeText={handleChange('number')}
-                    onBlur={handleBlur('number')}
-                    keyboardType='numeric'
-                  />
-
-                  <InputMask
                     mask={Masks.BRL_CURRENCY}
                     label={'Valor'}
-                    placeholder={'Digite o valor a ser transferido'}
+                    placeholder={'Digite o valor do pix'}
                     value={values.amount}
                     error={errors.amount ?? undefined}
                     onChangeText={handleChange('amount')}
                     onBlur={handleBlur('amount')}
                     keyboardType='numeric'
                   />
+
+                  <View style={{ marginTop: 25 }}>
+                    <Text style={[styles.titleSm, { textAlign: "center" }]}>Conta</Text>
+                    <Text style={[styles.text, { textAlign: "center" }]}>{account?.user?.name}</Text>
+                  </View>
                 </View>
     
                 <View>
-                  <Button
+                  <Button 
+                    title='Confirmar' 
+                    onPress={handleSubmit} 
                     isLoading={isLoading}
-                    title='Transferir'
-                    onPress={() => {
-                      handleSubmit();
-                    }}
                   />
                 </View>
               </View>
@@ -108,4 +98,4 @@ const TransferScreen = ({ navigation }) => {
   )
 };
 
-export default TransferScreen;
+export default PixConfirmScreen;
