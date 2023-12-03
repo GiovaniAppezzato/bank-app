@@ -1,16 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  Keyboard
-} from 'react-native';
+import {View, Text, Image, ScrollView, Keyboard} from 'react-native';
 import * as Yup from 'yup';
 import {Formik} from 'formik';
 
 import styles from './styles';
-import Rectangle153 from '../../../assets/icons/Rectangle 153.svg';;
+import Rectangle153 from '../../../assets/icons/Rectangle 153.svg';
 import Button from '../../components/Button';
 import Input from '../../components/Formik/Input';
 import InputPassword from '../../components/Formik/InputPassword';
@@ -32,7 +26,7 @@ const SignInScreen = ({navigation}) => {
   const formRef = useRef(null);
   const scrollRef = useRef(null);
 
-  const { signIn } = useAuth();
+  const {signIn} = useAuth();
 
   const handleSignUpScreen = () => {
     navigation.navigate('SignUpScreen');
@@ -42,7 +36,7 @@ const SignInScreen = ({navigation}) => {
     setIsLoading(true);
 
     try {
-      signUpSchema.validateSync(values, { abortEarly: false });
+      signUpSchema.validateSync(values, {abortEarly: false});
 
       Keyboard.dismiss();
 
@@ -63,8 +57,7 @@ const SignInScreen = ({navigation}) => {
       contentContainerStyle={{flexGrow: 1}}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
-      style={styles.container}
-    >
+      style={styles.container}>
       <View style={styles.containerHeader}>
         <Rectangle153 />
         <Image
@@ -80,8 +73,8 @@ const SignInScreen = ({navigation}) => {
           validateOnChange={false}
           validateOnBlur={false}
           initialValues={{
-            email: 'usuario01@gmail.com',
-            password: '123456',
+            email: 'pedro795027@gmail.com',
+            password: '20deagosto',
           }}>
           {({handleChange, handleBlur, handleSubmit, values, errors}) => (
             <>
@@ -114,9 +107,11 @@ const SignInScreen = ({navigation}) => {
                 }}
               />
 
-              <Text style={styles.textPassword} onPress={() => {
-                handleSignUpScreen();
-              }}>
+              <Text
+                style={styles.textPassword}
+                onPress={() => {
+                  handleSignUpScreen();
+                }}>
                 Abrir Conta
               </Text>
 
