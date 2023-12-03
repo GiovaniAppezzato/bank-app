@@ -66,12 +66,40 @@ export const AccountProvider = ({ children }) => {
     }
   }
 
+  async function transfer(accountNumber, amount) {
+    try {
+      const response = await api.post('/account/transfers', { number: accountNumber, amount });
+      const { accountSender } = response.data;
+
+      setAccount(accountSender);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function pixTransfer(pixKey, amount) {
+    try {
+      const response = await api.post('/pix-movements', { pix_key: pixKey, amount });
+      const { accountSender } = response.data;
+
+      setAccount(accountSender);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return (
     <AccountContext.Provider
       value={{
         account,
         extract,
-        getAccount
+        getAccount,
+        transfer,
+        pixTransfer,
       }}>
       {children}
     </AccountContext.Provider>

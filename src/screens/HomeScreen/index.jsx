@@ -121,6 +121,10 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.rowTransactions}>
           <Text style={styles.titleTransactions}>últimas transações</Text>
 
+          {extract.length === 0 && (
+            <></>
+          )}
+
           {extract.map((transaction) => (
             <TouchableOpacity style={styles.cardTransactions} key={transaction.id}>
               <AntDesign 
@@ -139,11 +143,11 @@ const HomeScreen = ({ navigation }) => {
             </TouchableOpacity>
           ))}
 
-          <View style={{ marginVertical: 15, justifyContent: 'center', alignItems: 'center' }}>
+          {/* <View style={{ marginVertical: 15, justifyContent: 'center', alignItems: 'center' }}>
             <TouchableOpacity style={{  }}>
               <Text style={styles.titleTransactions}>Ver tudo</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     </SafeAreaView>
