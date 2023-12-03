@@ -40,7 +40,7 @@ const PixScreen = ({ navigation }) => {
 
       console.log(values);
     } catch (errors) {
-
+      // ...
     }
   }
 
