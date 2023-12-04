@@ -15,18 +15,11 @@ const styles = StyleSheet.create({
         shadowColor:'blue',
         alignItems:'center'
     },
-    profileImage: {
-        width: 44,
-        height: 44,
-        borderWidth: 2,
-        borderColor: 'white',
-        borderRadius: 100,
-        overflow: 'hidden', 
-        alignItems: 'center',
+    image:{ 
+        width: 50, 
+        height: 50, 
+        borderRadius: 50,
         marginRight: 15
-    },
-    image:{
-        flex: 1,
     },
     textHeader:{
         fontFamily: theme.fonts.MEDIUM,
@@ -39,7 +32,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginBottom: 25
     },
-    wrapperImage: {
+    wrapperUser: {
         flexDirection: 'row',
         alignItems: 'center',
     },

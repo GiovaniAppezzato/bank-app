@@ -50,19 +50,17 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      
+
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <View style={styles.rowHeader}>
-            <View style={styles.wrapperImage}>
-              <View style={styles.profileImage}>
-                <Image
-                  source={{
-                    uri: `${config.baseUrl}/storage/users/${user.photo}`,
-                  }}
-                  style={styles.image}
-                  resizeMode="center"
-                />
-              </View>
+            <View style={styles.wrapperUser}>
+              <Image
+                style={styles.image}
+                source={{ uri: `${config.baseUrl}/storage/users/${user.photo}` }}
+              />
+
               <TouchableOpacity
                 onPress={() => handleNavigationscreen('ExtractScreen')}>
                 <Text style={styles.textHeader}>{user.name}</Text>
