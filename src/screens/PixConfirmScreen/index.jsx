@@ -33,12 +33,15 @@ const PixConfirmScreen = ({ navigation, route }) => {
 
       const amount = Number(values.amount.replace('R$', '').replace('.', '').replace(',', '.').trim());
 
-      if(amount > account.balance) {
-        Toast.show('Não há saldo suficiente para realizar a transferência');
-      } else {
-        await pixTransfer(pixKey, amount);
-        navigation.navigate('HomeScreen');
-      }
+      await pixTransfer(pixKey, amount);
+      navigation.navigate('HomeScreen');
+
+      // if(amount > account.balance) {
+      //   Toast.show('Não há saldo suficiente para realizar a transferência');
+      // } else {
+      //   await pixTransfer(pixKey, amount);
+      //   navigation.navigate('HomeScreen');
+      // }
     } catch (errors) {
       if (errors instanceof Yup.ValidationError) {
         setValidationErrors(formRef, errors);

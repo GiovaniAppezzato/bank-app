@@ -11,6 +11,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
+import moment from 'moment';
 
 import styles from './styles';
 import theme from '../../global/styles/theme';
@@ -18,13 +19,14 @@ import config from '../../global/config';
 import Loading from '../../components/Loading';
 import {useAuth} from '../../hooks/useAuth';
 import {useAccount} from '../../hooks/useAccount';
+import {getTitleReport} from '../../utils/transferUtils';
 
 const HomeScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isShowBalance, setIsShowBalance] = useState(false);
 
   const {user} = useAuth();
-  const {account, extract, getAccount} = useAccount();
+  const {account, reports, getAccount, getReports} = useAccount();
 
   useEffect(() => {
     loadData();
@@ -32,7 +34,10 @@ const HomeScreen = ({navigation}) => {
 
   async function loadData() {
     try {
-      await Promise.all([getAccount()]);
+      await Promise.all([
+        getAccount(),
+        getReports()
+      ]);
     } catch (error) {
       console.log(error);
     } finally {
@@ -50,8 +55,6 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      
-
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <View style={styles.rowHeader}>
@@ -144,43 +147,41 @@ const HomeScreen = ({navigation}) => {
         </View>
 
         <View style={styles.rowTransactions}>
-          <Text style={styles.titleTransactions}>últimas transações</Text>
+          <Text style={styles.titleTransactions}>Últimas transações</Text>
 
-          {extract.length === 0 && <></>}
-
-          {extract.map(transaction => (
-            <TouchableOpacity
+          {reports.slice(0, 5).map(report => (
+            <View
               style={styles.cardTransactions}
-              key={transaction.id}>
+              key={report.id}
+            >
               <AntDesign
                 style={{marginRight: 15}}
-                name={
-                  transaction.type === 'success' ? 'downcircle' : 'upcircle'
-                }
+                name={report.status === 'in' ? 'downcircle' : 'upcircle'}
                 size={18}
                 color={
-                  transaction.type === 'success'
+                  report.status === 'in'
                     ? theme.colors.SUCCESS
                     : theme.colors.DANGER
                 }
               />
 
               <View>
-                <Text style={styles.nameTransactions}>{transaction.name}</Text>
+                <Text style={styles.nameTransactions}>
+                  {getTitleReport(report)}
+                </Text>
                 <Text style={styles.valueTransactions}>
-                  R$ {transaction.value}
+                  {!isShowBalance ? 'R$ ****' : report?.amount?.toLocaleString('pt-br', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })}
                 </Text>
               </View>
 
-              <Text style={styles.dateTrasansactions}>{transaction.date}</Text>
-            </TouchableOpacity>
+              <Text style={styles.dateTrasansactions}>
+                {moment(report.created_at).format('DD/MM/YYYY')}
+              </Text>
+            </View>
           ))}
-
-          {/* <View style={{ marginVertical: 15, justifyContent: 'center', alignItems: 'center' }}>
-            <TouchableOpacity style={{  }}>
-              <Text style={styles.titleTransactions}>Ver tudo</Text>
-            </TouchableOpacity>
-          </View> */}
         </View>
       </ScrollView>
     </SafeAreaView>

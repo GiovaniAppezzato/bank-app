@@ -12,43 +12,7 @@ export const AccountProvider = ({ children }) => {
   const [cards, setCards] = useState([]);
   const [savings, setSavings] = useState(null);
   const [savingsMovements, setSavingsMovements] = useState([]);
-  const [extract, setExtract] = useState([
-    {
-      id: 1,
-      name: 'Transferência Recebida',
-      value: 1000,
-      date: '11 Nov',
-      type: 'success'
-    },
-    {
-      id: 2,
-      name: 'Pix enviado',
-      value: 1000,
-      date: '11 Nov',
-      type: 'danger'
-    },
-    {
-      id: 3,
-      name: 'Transferência Recebida',
-      value: 1000,
-      date: '11 Nov',
-      type: 'success'
-    },
-    {
-      id: 4,
-      name: 'Transferência Recebida',
-      value: 1000,
-      date: '11 Nov',
-      type: 'success'
-    },
-    {
-      id: 5,
-      name: 'Transferência Recebida',
-      value: 1000,
-      date: '11 Nov',
-      type: 'success'
-    }
-  ]);
+  const [reports, setReports] = useState([]);
 
   const { token } = useAuth();
 
@@ -69,12 +33,30 @@ export const AccountProvider = ({ children }) => {
     }
   }
 
+  async function getReports() {
+    try {
+      const response = await api.get('/account/reports', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      const { reports } = response.data;
+      setReports(reports);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async function transfer(accountNumber, amount) {
     try {
       const response = await api.post('/account/transfers', { number: accountNumber, amount });
-      const { accountSender } = response.data;
+      const { accountSender, report } = response.data;
 
       setAccount(accountSender);
+      setReports([report, ...reports]);
 
       return response;
     } catch (error) {
@@ -85,9 +67,10 @@ export const AccountProvider = ({ children }) => {
   async function pixTransfer(pixKey, amount) {
     try {
       const response = await api.post('/pix-movements', { pix_key: pixKey, amount });
-      const { accountSender } = response.data;
+      const { accountSender, report } = response.data;
 
       setAccount(accountSender);
+      setReports([report, ...reports]);
 
       return response;
     } catch (error) {
@@ -99,11 +82,27 @@ export const AccountProvider = ({ children }) => {
     try {
       const response = await api.post('/savings/savings-movements', { amount, type });
 
-      const { savingsMovement, account, savings } = response.data;
+      const { savingsMovement, account, savings, report } = response.data;
 
       setAccount(account);
       setSavings(savings);
       setSavingsMovements([savingsMovement, ...savingsMovements]);
+      setReports([report, ...reports]);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function applyLoan(amount) {
+    try {
+      const response = await api.post('/loans', { amount });
+
+      const { account, report } = response.data;
+      
+      setAccount(account);
+      setReports([report, ...reports]);
 
       return response;
     } catch (error) {
@@ -174,19 +173,6 @@ export const AccountProvider = ({ children }) => {
     }
   }
 
-  async function applyLoan(amount) {
-    try {
-      const response = await api.post('/loans', { amount });
-
-      const { account } = response.data;
-      setAccount(account);
-
-      return response;
-    } catch (error) {
-      throw error;
-    }
-  }
-
   return (
     <AccountContext.Provider
       value={{
@@ -194,8 +180,9 @@ export const AccountProvider = ({ children }) => {
         savings,
         savingsMovements,
         cards,
-        extract,
+        reports,
         getAccount,
+        getReports,
         getSavings,
         getSavingsMovements,
         getCards,

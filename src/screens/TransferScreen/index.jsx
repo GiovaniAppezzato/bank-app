@@ -64,7 +64,7 @@ const TransferScreen = ({ navigation }) => {
             validateOnChange={false}
             validateOnBlur={false}
             initialValues={{
-              number: '6618718-3',
+              number: '',
               amount: '',
             }}
           >

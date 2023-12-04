@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
         marginLeft: 'auto',
         fontFamily: theme.fonts.REGULAR,
         color: theme.colors.TEXT_LIGHT,
+        fontSize: 12,
     }
   })
 

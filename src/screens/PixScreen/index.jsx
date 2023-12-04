@@ -122,7 +122,7 @@ const PixScreen = ({ navigation }) => {
             innerRef={formRef}
             onSubmit={onSubmit}
             initialValues={{
-              key: 'usuario02@gmail.com',
+              key: '',
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
