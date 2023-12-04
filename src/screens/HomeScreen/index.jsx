@@ -86,7 +86,7 @@ const HomeScreen = ({navigation}) => {
           <View style={styles.cardBalance}>
             <Text style={styles.textSaldo}>Saldo atual</Text>
             <Text style={styles.textValue}>
-              {account?.balance?.toLocaleString('pt-br', {
+              {!isShowBalance ? 'R$ ******' : account?.balance?.toLocaleString('pt-br', {
                 style: 'currency',
                 currency: 'BRL',
               })}
@@ -100,7 +100,8 @@ const HomeScreen = ({navigation}) => {
           <ScrollView
             showsHorizontalScrollIndicator={false}
             horizontal={true}
-            style={styles.rowItens}>
+            style={styles.rowItens}
+          >
             <TouchableOpacity
               style={styles.button}
               onPress={() => handleNavigationscreen('PixScreen')}>

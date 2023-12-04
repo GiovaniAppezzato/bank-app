@@ -13,6 +13,7 @@ import LoansScreen from "../screens/LoansScreen";
 import ExtractScreen from "../screens/ExtractScreen";
 import SavingsScreen from "../screens/SavingsScreen";
 import PixConfirmScreen from "../screens/PixConfirmScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 
 const AppTab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();
@@ -38,7 +39,7 @@ export function MainRoutes() {
 export function ProfileRoutes() {
   return (
     <ProfileStack.Navigator screenOptions={{ headerShown: false }}>
-      <ProfileStack.Screen name='ProfileScreen' component={HomeScreen} />
+      <ProfileStack.Screen name='ProfileScreen' component={ProfileScreen} />
     </ProfileStack.Navigator>
   )
 }
@@ -76,7 +77,7 @@ export function AppRoutes() {
 
       <AppTab.Screen
         name="ProfileRoutes"
-        component={MainRoutes}
+        component={ProfileRoutes}
         options={{
           tabBarIcon: ({ color, size, focused }) => (
             <AntDesign name="user" color={color} size={size} />
