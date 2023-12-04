@@ -1,7 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import theme from '../../global/styles/theme';
 import defaultStyles from '../../global/styles'; 
+
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   ...defaultStyles,
@@ -10,8 +12,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   card: {
-    width: 180,
-    height: 220,
+    width: width - 125,
+    height: 190,
     borderRadius: 15,
     marginRight: 15,
     backgroundColor: theme.colors.PRIMARY,
@@ -19,8 +21,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   cardAdd: {
-    width: 180,
-    height: 220,
+    width: width - 125,
+    height: 190,
     borderRadius: 15,
     marginRight: 15,
     backgroundColor: theme.colors.PRIMARY_LIGHT,
@@ -39,6 +41,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#4b9cf9',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  containerModal: {
+    padding: 25,
+  },
+  titleModal: {
+    fontFamily: theme.fonts.SEMI_BOLD,
+    color: theme.colors.TEXT_DARK,
+    fontSize: 16,
+    marginBottom: 10,
   }
 })
 

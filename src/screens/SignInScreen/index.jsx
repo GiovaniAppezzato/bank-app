@@ -8,7 +8,6 @@ import Rectangle153 from '../../../assets/icons/Rectangle 153.svg';
 import Button from '../../components/Button';
 import Input from '../../components/Formik/Input';
 import InputPassword from '../../components/Formik/InputPassword';
-import Toast from '../../utils/toastUtils';
 import {setValidationErrors} from '../../utils/yupUtils';
 import {useAuth} from '../../hooks/useAuth';
 

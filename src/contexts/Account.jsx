@@ -137,6 +137,17 @@ export const AccountProvider = ({ children }) => {
     }
   }
 
+  async function destroyCard(id) {
+    try {
+      const response = await api.delete(`/cards/${id}`);
+      setCards(cards.filter(card => card.id !== id));
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async function getSavings() {
     try {
       const response = await api.get('/savings');
@@ -163,6 +174,19 @@ export const AccountProvider = ({ children }) => {
     }
   }
 
+  async function applyLoan(amount) {
+    try {
+      const response = await api.post('/loans', { amount });
+
+      const { account } = response.data;
+      setAccount(account);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return (
     <AccountContext.Provider
       value={{
@@ -176,9 +200,11 @@ export const AccountProvider = ({ children }) => {
         getSavingsMovements,
         getCards,
         createCard,
+        destroyCard,
         transfer,
         pixTransfer,
         savingsTransfer,
+        applyLoan
       }}>
       {children}
     </AccountContext.Provider>
